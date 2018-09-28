@@ -1,0 +1,41 @@
+{
+    "dictionary": "local_en",
+    "enabledModels": [],
+    "show_startup_tips": false,
+    "speech": "Google TTS",
+    "startup_tip_number": 0,
+    "transcription": "unknown",
+    "fields": {
+        "hangul": [
+            "Korean",
+            "Expression",
+            "Hangul",
+            "한글",
+            "한국어",
+            "조선말",
+            "韓國語",
+            "朝鮮말",
+        ],
+        "meaning": [
+            "Definition",
+            "Meaning",
+            "English",
+        ],
+        "transcription": [
+            "Reading"
+        ],
+        "hanja": [
+            "Hanja",
+            "한자",
+            "漢字",
+        ],
+        "sound": [
+            "Audio",
+            "Sound",
+            "Spoken",
+        ],
+        "silhouette": [
+            "Silhouette"
+        ]
+    }
+}

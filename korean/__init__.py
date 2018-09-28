@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-# Chinese Support Redux; an add-on for Anki <http://ankisrs.net/>
+# Korean Support; an add-on for Anki <http://ankisrs.net/>
 
 # Copyright 2012 Roland Sieker <ospalh@gmail.com>
 # Copyright 2012 Thomas Tempé <thomas.tempe@alysse.org>
 # Copyright 2017 Luo Li-Yan <joseph.lorimer13@gmail.com>
+# Copyright © 2018 Scott Gigante <scottgigante@gmail.com>
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,17 +22,8 @@
 from anki.hooks import addHook
 
 from . import edit
-from . import graph
 from .models import advanced
 from .models import basic
-from .templates import chinese
-from .templates import ruby
 from .ui import loadMenu
-# import chinese.models.compatibility
-# import chinese.models.ruby
-# import chinese.models.ruby_synonyms
-
-ruby.install()
-chinese.install()
 
 addHook('profileLoaded', loadMenu)

@@ -4,7 +4,7 @@ from aqt import mw
 
 from ._version import __version__
 
-CSR_GITHUB_URL = 'https://github.com/luoliyan/chinese-support-redux'
+CSR_GITHUB_URL = 'https://github.com/scottgigante/korean-support'
 
 
 def showAbout():
@@ -18,12 +18,14 @@ def showAbout():
         'Chris Hatch',
         'Roland Sieker',
         'Thomas TEMPÉ',
+        'Luo Li-Yan',
+        'Scott Gigante',
     ]
 
     text = '''
-<div style="font-weight: bold">Chinese Support Redux v%s</div><br>
+<div style="font-weight: bold">Korean Support v%s</div><br>
 <div><span style="font-weight: bold">
-    Maintainer</span>: Luo Li-Yan &lt;joseph.lorimer13@gmail.com&gt;</div>
+    Maintainer</span>: Scott Gigante &lt;scottgigante@gmail.com&gt;</div>
 <div><span style="font-weight: bold">Contributors</span>: %s</div>
 <div><span style="font-weight: bold">Website</span>: <a href="%s">%s</a></div>
 <div style="font-size: 12px">

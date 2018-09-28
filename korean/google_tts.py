@@ -3,6 +3,7 @@
 # Copyright 2012 Thomas TEMPÉ <thomas.tempe@alysse.org>
 # Copyright 2017 Pu Anlai
 # Copyright 2017 Luo Li-Yan <joseph.lorimer13@gmail.com>
+# Copyright © 2018 Scott Gigante <scottgigante@gmail.com>
 # Inspiration: Tymon Warecki
 # License: GNU AGPL, version 3 or later; http://www.gnu.org/copyleft/agpl.html
 
@@ -16,7 +17,7 @@ from aqt import mw
 from .lib.gtts import gTTS
 
 
-def get_word_from_google(source, lang='zh'):
+def get_word_from_google(source, lang='ko'):
     filename, path = getFilename('_'.join([source, 'G', lang]), '.mp3')
 
     if exists(path):

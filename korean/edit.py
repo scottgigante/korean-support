@@ -2,16 +2,18 @@
 # Copyright 2012, 2013 Thomas TEMPÉ <thomas.tempe@alysse.org>
 # Copyright 2012 Roland Sieker <ospalh@gmail.com>
 # Copyright 2017 Luo Li-Yan <joseph.lorimer13@gmail.com>
+# Copyright © 2018 Scott Gigante <scottgigante@gmail.com>
 # License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 
 from anki.hooks import addHook
 from aqt import mw
 
-from .config import chinese_support_config as config
+from .config import korean_support_config as config
 from .edit_behavior import updateFields
 
 
 class EditManager:
+
     def __init__(self):
         addHook('setupEditorButtons', self.setupButton)
         addHook('loadNote', self.updateButton)
@@ -20,14 +22,14 @@ class EditManager:
     def setupButton(self, buttons, editor):
         self.editor = editor
         self.buttonOn = False
-        editor._links['chineseSupport'] = self.onToggle
+        editor._links['koreanSupport'] = self.onToggle
 
         button = editor._addButton(
             icon=None,
-            cmd='chineseSupport',
-            tip='Chinese Support',
-            label='<b>汉字</b>',
-            id='chineseSupport',
+            cmd='koreanSupport',
+            tip='Korean Support',
+            label='<b>한글</b>',
+            id='koreanSupport',
             toggleable=True)
 
         return buttons + [button]
@@ -63,7 +65,7 @@ class EditManager:
             if index == len(allFields) - 1:
                 self.editor.loadNote(focusTo=index)
             else:
-                self.editor.loadNote(focusTo=index+1)
+                self.editor.loadNote(focusTo=index + 1)
 
         return False
 

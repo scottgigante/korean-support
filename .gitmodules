@@ -1,0 +1,3 @@
+[submodule "korean/lib/kengdic"]
+	path = korean/lib/kengdic
+	url = git@github.com:scottgigante/kengdic
