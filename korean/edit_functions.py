@@ -67,11 +67,8 @@ def english(hangul):
     Eg: '사랑' becomes 'Love'
     """
     words = translate_local(hangul)
-    res = ""
-    for word in words:
-        res += " \t" + word.english + "\n"
-
-    res = res.replace("\n", "\n<br>")
+    english = [word.english for word in words if word.english is not None]
+    res = "\n<br>".join(english)
     return res
 
 
