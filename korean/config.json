@@ -12,14 +12,20 @@
             "Hangul",
             "한글",
             "한국어",
-            "조선말",
             "韓國語",
+            "조선말",
             "朝鮮말"
         ],
         "meaning": [
+            "English",
+            "영어",
+            "英語",
             "Definition",
+            "정의",
+            "定義",
             "Meaning",
-            "English"
+            "의미",
+            "意味"
         ],
         "transcription": [
             "Reading"
@@ -31,8 +37,11 @@
         ],
         "sound": [
             "Audio",
+            "오디오",
             "Sound",
-            "Spoken"
+            "소리",
+            "Spoken",
+            "구두의"
         ],
         "silhouette": [
             "Silhouette"

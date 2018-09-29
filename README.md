@@ -28,12 +28,12 @@ The core feature of the add-on is the automatic field filling. To take advantage
 Then, to use the field filling features:
 1. Add a new note to Anki (press <kbd>a</kbd>)
 2. Select `Korean (basic)` as the note type
-3. Enable Korean Support Redux for this note type (click `한글`)
+3. Enable Korean Support for this note type (click `한글`)
 4. Enter a word (e.g., 사랑) in the `Korean` field
 5. Press <kbd>Tab</kbd>
 6. The remaining fields should then be populated automatically
 
 ### History
 
-#### v0.1-beta (2018.??.??)
+#### v0.1-beta (2018.09.29)
 * Initial port from Chinese Support

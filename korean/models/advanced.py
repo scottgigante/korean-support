@@ -21,15 +21,15 @@ fields_list = ["Korean", "English", "Hanja", "Sound", "Silhouette", "Comment"]
 # Card templates
 ######################################################################
 
-recognition_front = u'\n'.join([deck_tags, korean])
+recognition_front = u'\n<br>'.join([deck_tags, korean])
 
-recall_front = u'\n'.join([deck_tags, english, silhouette])
+recall_front = u'\n<br>'.join([deck_tags, english, silhouette])
 
-recognition_back = u'\n'.join([front_side, english, sound,
-                               hanja_button, comment])
+recognition_back = u'\n<br>'.join([front_side, english, sound,
+                                   hanja_button, comment])
 
-recall_back = u'\n'.join([front_side, korean, sound,
-                          hanja_button, comment])
+recall_back = u'\n<br>'.join([front_side, korean, sound,
+                              hanja_button, comment])
 
 
 # Add model for korean word to Anki
