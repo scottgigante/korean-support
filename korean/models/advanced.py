@@ -10,7 +10,7 @@
 
 import anki.stdmodels
 from .css import style
-from .card_fields import hanja_button, deck_tags, korean, english, sound, silhouette, comment
+from .card_fields import hanja_button, deck_tags, korean, english, sound, front_side, silhouette, comment
 
 
 # List of fields
@@ -21,21 +21,21 @@ fields_list = ["Korean", "English", "Hanja", "Sound", "Silhouette", "Comment"]
 # Card templates
 ######################################################################
 
-recognition_front = u'\n'.join([deck_tags, '', korean])
+recognition_front = u'\n'.join([deck_tags, korean])
 
-recall_front = u'\n'.join([deck_tags, '', english, silhouette])
+recall_front = u'\n'.join([deck_tags, english, silhouette])
 
-recognition_back = u'\n'.join([deck_tags, '', english, sound,
+recognition_back = u'\n'.join([front_side, english, sound,
                                hanja_button, comment])
 
-recall_back = u'\n'.join([deck_tags, '', korean, sound,
+recall_back = u'\n'.join([front_side, korean, sound,
                           hanja_button, comment])
 
 
 # Add model for korean word to Anki
 ######################################################################
 
-model_name = "Chinese (advanced)"
+model_name = "Korean (advanced)"
 
 
 def add_model(col):

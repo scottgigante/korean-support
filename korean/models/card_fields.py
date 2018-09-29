@@ -8,7 +8,7 @@
 # License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 #
 
-deck_tags = u'<div class=tags>{{Deck}}{{#Tags}} -- {{Tags}}{{/Tags}}</div>'
+deck_tags = u'<div class=tags>{{Deck}}{{#Tags}} -- {{Tags}}{{/Tags}}</div><br>'
 
 hanja_button = u'''\
 {{#Hanja}}
@@ -35,3 +35,8 @@ silhouette = u'<div class=korean>{{Silhouette}}</span>'
 comment = u'<div class=comment>{{Comment}}</span>'
 
 sound = u'<!-- {{Sound}}-->'
+
+front_side = u'''\
+{{FrontSide}}
+<hr id=answer>
+'''

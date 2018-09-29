@@ -10,7 +10,7 @@
 
 import anki.stdmodels
 from .css import style
-from .card_fields import hanja_button, deck_tags, korean, english, sound
+from .card_fields import hanja_button, deck_tags, korean, english, sound, front_side
 
 # List of fields
 ######################################################################
@@ -20,13 +20,13 @@ fields_list = ["Korean", "English", "Hanja", "Sound"]
 # Card templates
 ######################################################################
 
-recognition_front = u'\n'.join([deck_tags, '', korean])
+recognition_front = u'\n<br>'.join([deck_tags, korean])
 
-recall_front = u'\n'.join([deck_tags, '', english])
+recall_front = u'\n<br>'.join([deck_tags, english])
 
-recognition_back = u'\n'.join([deck_tags, '', english, sound, hanja_button])
+recognition_back = u'\n<br>'.join([front_side, english, sound, hanja_button])
 
-recall_back = u'\n'.join([deck_tags, '', korean, sound, hanja_button])
+recall_back = u'\n<br>'.join([front_side, korean, sound, hanja_button])
 
 
 # Add model for chinese word to Anki
