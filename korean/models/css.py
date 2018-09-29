@@ -18,13 +18,9 @@ style = u'''\
 .hanja { font-size: 30px; color: rgb(173,122,190) }
 .button { font-size: 30px; color: rgb(173,122,190) }
 
-.win .korean { font-family: "Gulim", "arial"; }
-.mac .korean { font-family: "Gulim"; }
-.linux .korean { font-family: "Gulim", "arial"; }
-.mobile .korean { font-family: "Gulim"; }
-.korean { font-size: 30px;}
+.korean { font-family: "Malgun Gothic", "sans-serif"; font-size: 30px;}
 
-.english { font-size: 16px;}
+.english { font-size: 20px;}
 .comment {font-size: 15px; color:grey;}
 .tags {color:gray;text-align:right;font-size:10pt;}
 .note {color:gray;font-size:12pt;margin-top:20pt;}
