@@ -6,8 +6,9 @@
 
 from functools import reduce
 import re
+import os
 
-from .lib.kengdic.python import kengdic
+from .lib import kengdic
 from . import google_tts
 from .config import korean_support_config
 # from .microsofttranslator import Translator as MSTranslator
@@ -43,8 +44,9 @@ def silhouette(hangul):
             r += i + " "
         return r[:-1]
 
-    hangul = re.sub("[\u3400-\u9fff]+", insert_spaces, hangul)
-    txt = re.sub("[\u3400-\u9fff]", "_", hangul)
+    hangul_unicode = "[\u1100-\u11ff|\uAC00-\uD7AF|\u3130-\u318F]"
+    hangul = re.sub("{}+".format(hangul_unicode), insert_spaces, hangul)
+    txt = re.sub(hangul_unicode, "_", hangul)
     return txt
 
 
@@ -62,6 +64,7 @@ def translate_local(text):
 
 def english(hangul):
     """Get English from local dictionary
+    Eg: '사랑' becomes 'Love'
     """
     words = translate_local(hangul)
     res = ""
@@ -74,19 +77,20 @@ def english(hangul):
 
 def hanja(hangul):
     """Get Hanja from local dictionary
+    Eg: '일월' becomes '一月'
     """
     words = translate_local(hangul)
-    res = "，".join([word.hanja for word in words])
+    hanja = [word.hanja for word in words if word.hanja is not None]
+    res = "，".join(hanja)
     return res
 
 
-def translate(text, from_lang="zh", to_lang=None, progress_bar=True):
+def translate(text, from_lang="ko", to_lang=None, progress_bar=True):
     '''Translate to a different language.
-    Eg: '你好' becomes 'Hello'
     Only installed dictionaries can be used.
 
-    to_lang possible values : "local_en", "local_de", "local_fr"
-    or a 2-letter ISO language code for MS Translate
+    to_lang possible values : "local_en"
+    TODO: or a 2-letter ISO language code for MS Translate
 
     if to_lang is unspecified, the default language will be used.
     if progress_bar is True, then will display a progress bar.
@@ -99,9 +103,11 @@ def translate(text, from_lang="zh", to_lang=None, progress_bar=True):
         to_lang = korean_support_config.options["dictionary"]
         if "None" == to_lang:
             return ""
-    if to_lang.startswith("local_"):  # Local dict
-        return translate_local(text, to_lang[-2:])
-    # else:  #Ms translate
+    if to_lang == "local_en":  # Local dict
+        return translate_local(text)
+    else:  # Ms translate
+        raise NotImplementedError(
+            "{} translation not currently supported".format(to_lang))
     #     ret = ""
     #     if progress_bar:
     #         mw.progress.start(label="MS Translator lookup", immediate=True)
@@ -226,6 +232,10 @@ def no_sound(text):
 
 MS_translator_object = None
 
+# monkey patch missing pkg_resources
+kengdic.Kengdic.__sqlite_path = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "lib", "kendic", "kengdic", "sqlite", "kengdic_2011.sqlite")
 db = kengdic.Kengdic()
 
 

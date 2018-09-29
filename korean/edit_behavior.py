@@ -14,7 +14,7 @@ from .edit_functions import (get_any,
                              silhouette,
                              sound,
                              hanja,
-                             translate)
+                             english)
 
 
 # Returns 1 if a translation was found in the dictionary, otherwise returns 0
@@ -22,7 +22,7 @@ def update_Meaning_fields(hangul, dico):
     # Update Meaning field only if empty
     m = ''
     if get_any(config.options['fields']['meaning'], dico) == '':
-        m = translate(hangul)
+        m = english(hangul)
         if not m:  # Translation is empty
             return 0
         setAll(config.options['fields']['meaning'], dico, to=m)
@@ -57,7 +57,7 @@ def update_Hanja_fields(hangul, dico):
         h = hanja(hangul)
         if not h:
             return 0
-        setAll(config.options['fields']['hanja'], dico, to=s)
+        setAll(config.options['fields']['hanja'], dico, to=h)
 
     return 1
 

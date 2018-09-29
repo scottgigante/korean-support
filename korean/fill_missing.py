@@ -13,7 +13,7 @@ from aqt import mw
 from aqt.utils import showInfo, askUser
 
 from .config import korean_support_config as config
-from .edit_behavior import (update_all_Sound_fields,
+from .edit_behavior import (update_Sound_fields,
                             update_Meaning_fields,
                             update_Silhouette_fields)
 from .edit_functions import has_field, get_any, cleanup
@@ -67,7 +67,7 @@ def fill_sounds():
                     d_success=d_success,
                     d_failed=d_failed)
                 mw.progress.update(label=msg_string, value=d_scanned)
-                s, f = update_all_Sound_fields(hangul, note_dict)
+                s, f = update_Sound_fields(hangul, note_dict)
                 d_success += s
                 d_failed += f
 
