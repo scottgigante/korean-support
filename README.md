@@ -9,6 +9,8 @@ Support for Korean language study for Anki 2.1.
   * Audio (fetched from Google)
 * Built-in note types (basic and advanced)
 
+![Edit window](https://raw.githubusercontent.com/scottgigante/korean-support/master/edit_window_demo.png)
+
 ### To-do
 
 * Romanisation (if anyone wants it)
