@@ -11,29 +11,25 @@ Support for Korean language study for Anki 2.1.
 
 ![Edit window](https://raw.githubusercontent.com/scottgigante/korean-support/master/edit_window_demo.png)
 
+### Instructions
+
+* [Setup Instructions](https://github.com/scottgigante/korean-support/wiki/Setup-Instructions)
+* [Frequently asked questions](https://github.com/scottgigante/korean-support/wiki/Frequently-asked-questions)
+* [Learning tips](https://github.com/scottgigante/korean-support/wiki/Learning-Tips)
+
+Use the supplied Korean (basic) or Korean (advanced) note type, or use your existing note type (just make sure your field names are called "Korean", "English", "Hanja", and "Sound".) 
+
+For bug reports, issues and feature requests, and to discuss contributing to the add-on:
+* [Issue Tracker](https://github.com/scottgigante/korean-support/issues)
+* [Forum support thread](https://anki.tenderapp.com/discussions/add-ons/22781-korean-support-add-on)
+* [Forum development thread](https://anki.tenderapp.com/discussions/add-ons/22783-korean-support-add-on-development)
+
 ### To-do
 
 * Romanisation (if anyone wants it)
 * NAVER TTS
 * Microsoft Translate
-
-### Usage
-
-The core feature of the add-on is the automatic field filling. To take advantage of this, you need to have an Anki note type with the appropriate fields (e.g., `Korean`, `English`, `Hanja`, `Sound`). If you don't already have such a note type, the easiest way to create one is to use the built-in model:
-1. Navigate to Tools → Manage Note Types (or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>)
-2. Click `Add`
-3. Select `Add: Korean (basic)`
-4. Click `OK`
-5. Click `OK` again
-6. Click `Close`
-
-Then, to use the field filling features:
-1. Add a new note to Anki (press <kbd>a</kbd>)
-2. Select `Korean (basic)` as the note type
-3. Enable Korean Support for this note type (click `한글`)
-4. Enter a word (e.g., 사랑) in the `Korean` field
-5. Press <kbd>Tab</kbd>
-6. The remaining fields should then be populated automatically
+* Google Translate
 
 ### History
 
