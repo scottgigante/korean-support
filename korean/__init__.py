@@ -20,6 +20,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from anki.hooks import addHook
+from aqt import mw, addons
 
 from . import edit
 from .models import advanced
@@ -27,3 +28,10 @@ from .models import basic
 from .ui import loadMenu
 
 addHook('profileLoaded', loadMenu)
+
+# hack to force updates
+mgr = mw.addonManager
+updated = mgr.checkForUpdates()
+if updated:
+    dialog = addons.AddonsDialog(mgr)
+    dialog.onCheckForUpdates()
