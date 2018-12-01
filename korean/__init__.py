@@ -21,6 +21,7 @@
 
 from anki.hooks import addHook
 from aqt import mw, addons
+from requests.exceptions import ConnectionError
 
 from . import edit
 from .models import advanced
@@ -31,7 +32,11 @@ addHook('profileLoaded', loadMenu)
 
 # hack to force updates
 mgr = mw.addonManager
-updated = mgr.checkForUpdates()
+try:
+    updated = mgr.checkForUpdates()
+except ConnectionError:
+    updated = False
+
 if updated:
     dialog = addons.AddonsDialog(mgr)
     dialog.onCheckForUpdates()

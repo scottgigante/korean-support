@@ -9,6 +9,8 @@ git pull base master
 Resolve merge.
 
 ```
+git add *
+git commit -m "update submodule"
 git push origin master
 cp -r gtts_token ../gTTS/gtts
 
@@ -28,4 +30,12 @@ cd ../../
 git add *
 git commit -m "update submodules"
 git push origin master
+```
+
+How to bundle
+-------------
+
+```
+find korean -type d -name "__pycache__" | xargs rm -rf
+zip korean.zip korean/*
 ```

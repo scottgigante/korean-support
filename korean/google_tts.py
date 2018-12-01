@@ -14,19 +14,27 @@ import re
 
 from aqt import mw
 
-from .lib.gtts import gTTS
+from .lib.gtts.tts import gTTS
 
 
-def get_word_from_google(source, lang='ko'):
+def get_word_from_google(source, lang='ko', attempts=3):
     filename, path = getFilename('_'.join([source, 'G', lang]), '.mp3')
 
-    if exists(path):
+    if exists(path) and os.stat(path).st_size > 0:
         return filename
 
-    tts = gTTS(source, lang=lang)
-    tts.save(path)
-
-    return filename
+    for attempt in range(attempts):
+        try:
+            tts = gTTS(source, lang=lang)
+            tts.save(path)
+            break
+        except Exception as e:
+            error = str(e)
+            tts = None
+    if tts is not None:
+        return filename
+    else:
+        raise RuntimeError(error)
 
 
 def getFilename(base, ext):

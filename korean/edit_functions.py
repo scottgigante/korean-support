@@ -7,6 +7,7 @@
 from functools import reduce
 import re
 import os
+from aqt.utils import showInfo
 
 from .lib import kengdic
 from . import google_tts
@@ -165,7 +166,9 @@ def sound(text, source=None):
         try:
             return "[sound:{}]".format(google_tts.get_word_from_google(
                 text, 'ko'))
-        except:
+        except Exception as e:
+            if korean_support_config.options['debug']:
+                showInfo("Google TTS failed: {}".format(str(e)))
             return ""
     else:
         return ""

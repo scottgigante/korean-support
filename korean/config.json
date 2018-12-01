@@ -2,6 +2,7 @@
     "dictionary": "local_en",
     "enabledModels": [],
     "show_startup_tips": false,
+    "debug": false,
     "speech": "Google TTS",
     "startup_tip_number": 0,
     "transcription": "unknown",
