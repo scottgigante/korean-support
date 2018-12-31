@@ -92,7 +92,10 @@ def fill_sounds():
         msg_string = msg_string + ("\n\nTTS is taken from an on-line source. "
                                    "It may not always be fully responsive. "
                                    "Please check your network connexion, "
-                                   "or retry later.")
+                                   "or retry later.\n\nIf failures persist, "
+                                   "please set Korean Support to debug mode "
+                                   "and submit a bug report from the help "
+                                   "menu.")
     showInfo(msg_string)
 
 #############################################################
