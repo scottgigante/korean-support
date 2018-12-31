@@ -37,5 +37,6 @@ How to bundle
 
 ```
 find korean -type d -name "__pycache__" | xargs rm -rf
-zip korean.zip korean/*
+find korean -type f -name "desktop.ini" | xargs rm -rf
+zip -r korean.zip korean
 ```
