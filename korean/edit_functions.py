@@ -8,6 +8,8 @@ from functools import reduce
 import re
 import os
 from aqt.utils import showInfo
+import sys
+import traceback
 
 from .lib import kengdic
 from . import google_tts
@@ -168,7 +170,10 @@ def sound(text, source=None):
                 text, 'ko'))
         except Exception as e:
             if korean_support_config.options['debug']:
-                showInfo("Google TTS failed: {}".format(str(e)))
+                exc_type, exc_value, exc_traceback = sys.exc_info()
+                showInfo("Google TTS failed.\n{}".format(
+                    ''.join(traceback.format_exception(
+                        exc_type, exc_value, exc_traceback))))
             return ""
     else:
         return ""
