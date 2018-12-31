@@ -87,6 +87,14 @@ def set_dict_constructor(dict):
     return set_dict
 
 
+def toggle_option_constructor(option):
+    def set_option():
+        value = not korean_support_config.options[option]
+        korean_support_config.set_option(option, value)
+        update_dict_action_checkboxes()
+    return set_option
+
+
 def set_option_constructor(option, value):
     def set_option():
         korean_support_config.set_option(option, value)
@@ -118,6 +126,8 @@ def update_dict_action_checkboxes():
         ui_actions['speech_' + t].setChecked(
             t == korean_support_config.options['speech'])
 
+    ui_actions['debug'].setChecked(korean_support_config.options['debug'])
+
 
 def loadMenu():
     global ui_actions
@@ -148,6 +158,8 @@ def loadMenu():
     add_action(_('Report a bug or make a feature request'),
                submenu,
                lambda: openLink(CSR_GITHUB_URL + '/issues'))
+    ui_actions['debug'] = add_action(
+        _('Debug mode'), submenu, toggle_option_constructor('debug'), True)
 
     add_action(_('About...'), menu, showAbout)
 
