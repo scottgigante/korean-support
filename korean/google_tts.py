@@ -8,7 +8,6 @@
 # License: GNU AGPL, version 3 or later; http://www.gnu.org/copyleft/agpl.html
 
 
-from os.path import exists
 import os
 import re
 
@@ -20,7 +19,7 @@ from .lib.gtts.tts import gTTS
 def get_word_from_google(source, lang='ko', attempts=3):
     filename, path = getFilename('_'.join([source, 'G', lang]), '.mp3')
 
-    if exists(path) and os.stat(path).st_size > 0:
+    if os.path.exists(path) and os.stat(path).st_size > 0:
         return filename
 
     for attempt in range(attempts):
