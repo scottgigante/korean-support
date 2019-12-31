@@ -10,25 +10,6 @@ cd ../gTTS-token
 git remote add base https://github.com/Boudewijn26/gTTS-token
 ```
 
-How to build
-------------
-
-```
-mkdir -p korean/lib
-cd lib/gTTS
-rm -rf ../../korean/lib/gtts
-cp -r gtts ../../korean/lib/
-cp LICENSE ../../korean/lib/gtts
-cd ../gTTS-token
-cp -r gtts_token ../../korean/lib/gtts
-cp LICENSE ../../korean/lib/gtts/gtts_token
-cd ../kengdic
-rsync -ah python/kengdic/ ../../korean/lib/kengdic/ --delete
-cp LICENSE ../../korean/lib/kengdic
-cd ../../
-```
-
-
 How to update
 -------------
 
@@ -61,6 +42,24 @@ cd ../../
 git add *
 git commit -m "update submodules"
 git push origin master
+```
+
+How to build
+------------
+
+```
+mkdir -p korean/lib
+cd lib/gTTS
+rm -rf ../../korean/lib/gtts
+cp -r gtts ../../korean/lib/
+cp LICENSE ../../korean/lib/gtts
+cd ../gTTS-token
+cp -r gtts_token ../../korean/lib/gtts
+cp LICENSE ../../korean/lib/gtts/gtts_token
+cd ../kengdic
+rsync -ah python/kengdic/ ../../korean/lib/kengdic/ --delete
+cp LICENSE ../../korean/lib/kengdic
+cd ../../
 ```
 
 How to bundle
