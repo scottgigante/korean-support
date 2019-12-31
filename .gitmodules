@@ -1,9 +1,3 @@
-[submodule "lib/gTTS"]
-	path = lib/gTTS
-	url = https://github.com/pndurette/gTTS
-[submodule "lib/gTTS-token"]
-	path = lib/gTTS-token
-	url = https://github.com/boudewijn26/gTTS-token
 [submodule "lib/kengdic"]
 	path = lib/kengdic
 	url = https://github.com/scottgigante/kengdic
