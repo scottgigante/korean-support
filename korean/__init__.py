@@ -21,6 +21,7 @@
 
 from anki.hooks import addHook
 from aqt import mw, addons
+from aqt.utils import showInfo
 
 from . import edit
 from .models import advanced
@@ -31,11 +32,14 @@ addHook('profileLoaded', loadMenu)
 
 # hack to force updates
 mgr = mw.addonManager
+for dir in mgr.managedAddons():
+    if mgr.addonName(dir) == "Korean Support":
+        addon_id = dir
+        break
 try:
-    updated = mgr.checkForUpdates()
+    updated = str(addon_id) in mgr.checkForUpdates()
 except:
     updated = False
 
 if updated:
-    dialog = addons.AddonsDialog(mgr)
-    dialog.onCheckForUpdates()
+    showInfo("An update is available for Korean Support. Please update it by going to Tools -> Addons -> Check for Updates.")
