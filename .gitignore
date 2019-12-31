@@ -1,2 +1,4 @@
 *.pyc
 korean/lib
+__pycache__
+desktop.ini
