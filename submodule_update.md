@@ -38,6 +38,8 @@ git push origin master
 
 cd ../kengdic
 git pull origin master
+cd ../NaverTTS
+git pull origin master
 cd ../../
 git add *
 git commit -m "update submodules"
@@ -59,6 +61,9 @@ cp LICENSE ../../korean/lib/gtts/gtts_token
 cd ../kengdic
 rsync -ah python/kengdic/ ../../korean/lib/kengdic/ --delete
 cp LICENSE ../../korean/lib/kengdic
+cd ../NaverTTS
+rsync -ah navertts/ ../../korean/lib/navertts/ --delete
+cp LICENSE ../../korean/lib/navertts
 cd ../../
 ```
 
@@ -66,7 +71,8 @@ How to bundle
 -------------
 
 ```
+rm -f korean.zip
 find korean -type d -name "__pycache__" | xargs rm -rf
 find korean -type f -name "desktop.ini" | xargs rm -rf
-zip -r korean.zip korean
+cd korean && zip -r ../korean.zip * && cd ..
 ```
