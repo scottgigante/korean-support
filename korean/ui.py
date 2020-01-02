@@ -25,6 +25,7 @@ dictionaries = [
 speech_options = [
     'None',
     'Google TTS',
+    'NAVER Papago',
 ]
 
 msTranslateLanguages = [

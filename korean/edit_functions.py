@@ -12,7 +12,7 @@ import sys
 import traceback
 
 from .lib import kengdic
-from . import google_tts
+from . import tts
 from .config import korean_support_config
 # from .microsofttranslator import Translator as MSTranslator
 
@@ -164,14 +164,15 @@ def sound(text, source=None):
     if "" == text:
         return ""
 
-    if "Google TTS" == source:
+    if source in ["Google TTS", "NAVER Papago"]:
         try:
-            return "[sound:{}]".format(google_tts.get_word_from_google(
-                text, 'ko'))
+            return "[sound:{}]".format(tts.download(
+                text, 'ko', service=source))
         except Exception as e:
             if korean_support_config.options['debug']:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
-                showInfo("Google TTS failed.\n{}".format(
+                showInfo("{} failed.\n{}".format(
+                    source,
                     ''.join(traceback.format_exception(
                         exc_type, exc_value, exc_traceback))))
             return ""

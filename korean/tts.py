@@ -14,17 +14,23 @@ import re
 from aqt import mw
 
 from .lib.gtts.tts import gTTS
+from .lib.navertts.tts import NaverTTS
 
 
-def get_word_from_google(source, lang='ko', attempts=3):
-    filename, path = getFilename('_'.join([source, 'G', lang]), '.mp3')
+def download(text, lang='ko', service='Google TTS', attempts=3):
+    filename, path = getFilename('_'.join([text, service[0], lang]), '.mp3')
 
     if os.path.exists(path) and os.stat(path).st_size > 0:
         return filename
 
     for attempt in range(attempts):
         try:
-            tts = gTTS(source, lang=lang)
+            if service == 'Google TTS':
+                tts = gTTS(source, lang=lang)
+            elif service == 'NAVER Papago':
+                tts = NaverTTS(source, lang=lang)
+            else:
+                raise ValueError("Unrecognized service {}".format(service))
             tts.save(path)
             break
         except Exception as e:
