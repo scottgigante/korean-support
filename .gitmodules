@@ -7,3 +7,6 @@
 [submodule "lib/NaverTTS"]
 	path = lib/NaverTTS
 	url = git@github.com:scottgigante/NaverTTS
+[submodule "lib/gTTS"]
+	path = lib/gTTS
+	url = git@github.com:scottgigante/gTTS
