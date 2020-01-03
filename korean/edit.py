@@ -51,7 +51,7 @@ class EditManager:
                    config.options['enabledModels'])
 
         if (enabled and not self.buttonOn) or (not enabled and self.buttonOn):
-            editor.web.eval('toggleEditorButton(chineseSupport);')
+            editor.web.eval('toggleEditorButton(koreanSupport);')
             self.buttonOn = not self.buttonOn
 
     def onFocusLost(self, _, note, index):
