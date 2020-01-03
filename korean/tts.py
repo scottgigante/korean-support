@@ -26,9 +26,9 @@ def download(text, lang='ko', service='Google TTS', attempts=3):
     for attempt in range(attempts):
         try:
             if service == 'Google TTS':
-                tts = gTTS(source, lang=lang)
+                tts = gTTS(text, lang=lang)
             elif service == 'NAVER Papago':
-                tts = NaverTTS(source, lang=lang)
+                tts = NaverTTS(text, lang=lang)
             else:
                 raise ValueError("Unrecognized service {}".format(service))
             tts.save(path)
