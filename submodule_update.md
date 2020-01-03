@@ -6,8 +6,15 @@ git submodule init
 git submodule update
 cd lib/gTTS
 git remote add base https://github.com/pndurette/gTTS
+git checkout master
 cd ../gTTS-token
 git remote add base https://github.com/Boudewijn26/gTTS-token
+git checkout master
+cd ../NaverTTS
+git checkout master
+cd ../kengdic
+git checkout master
+cd ../..
 ```
 
 How to update
