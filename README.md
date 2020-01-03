@@ -27,11 +27,23 @@ For bug reports, issues and feature requests, and to discuss contributing to the
 ### To-do
 
 * Romanisation (if anyone wants it)
-* NAVER TTS
+* NAVER Translate
 * Microsoft Translate
 * Google Translate
 
 ### History
+
+#### v0.5-beta (2020.01.02)
+* Added NAVER TTS
+
+#### v0.4-beta (2019.12.30)
+* Made automatic updates more conservative
+
+#### v0.3-beta (2018.12.31)
+* Added debug mode
+
+#### v0.2-beta (2018.11.30)
+* Update Google TTS submodule
 
 #### v0.1-beta (2018.09.29)
 * Initial port from Chinese Support
