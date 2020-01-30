@@ -32,7 +32,7 @@ addHook('profileLoaded', loadMenu)
 
 # hack to force updates
 mgr = mw.addonManager
-for dir in mgr.managedAddons():
+for dir in mgr.allAddons():
     if mgr.addonName(dir) == "Korean Support":
         addon_id = dir
         break
