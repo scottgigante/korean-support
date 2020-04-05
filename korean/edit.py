@@ -13,45 +13,44 @@ from .edit_behavior import updateFields
 
 
 class EditManager:
-
     def __init__(self):
-        addHook('setupEditorButtons', self.setupButton)
-        addHook('loadNote', self.updateButton)
-        addHook('editFocusLost', self.onFocusLost)
+        addHook("setupEditorButtons", self.setupButton)
+        addHook("loadNote", self.updateButton)
+        addHook("editFocusLost", self.onFocusLost)
 
     def setupButton(self, buttons, editor):
         self.editor = editor
         self.buttonOn = False
-        editor._links['koreanSupport'] = self.onToggle
+        editor._links["koreanSupport"] = self.onToggle
 
         button = editor._addButton(
             icon=None,
-            cmd='koreanSupport',
-            tip='Korean Support',
-            label='<b>한글</b>',
-            id='koreanSupport',
-            toggleable=True)
+            cmd="koreanSupport",
+            tip="Korean Support",
+            label="<b>한글</b>",
+            id="koreanSupport",
+            toggleable=True,
+        )
 
         return buttons + [button]
 
     def onToggle(self, editor):
         self.buttonOn = not self.buttonOn
 
-        mid = str(editor.note.model()['id'])
+        mid = str(editor.note.model()["id"])
 
-        if self.buttonOn and mid not in config.options['enabledModels']:
-            config.options['enabledModels'].append(mid)
-        elif not self.buttonOn and mid in config.options['enabledModels']:
-            config.options['enabledModels'].remove(mid)
+        if self.buttonOn and mid not in config.options["enabledModels"]:
+            config.options["enabledModels"].append(mid)
+        elif not self.buttonOn and mid in config.options["enabledModels"]:
+            config.options["enabledModels"].remove(mid)
 
         config.save()
 
     def updateButton(self, editor):
-        enabled = (str(editor.note.model()['id']) in
-                   config.options['enabledModels'])
+        enabled = str(editor.note.model()["id"]) in config.options["enabledModels"]
 
         if (enabled and not self.buttonOn) or (not enabled and self.buttonOn):
-            editor.web.eval('toggleEditorButton(koreanSupport);')
+            editor.web.eval("toggleEditorButton(koreanSupport);")
             self.buttonOn = not self.buttonOn
 
     def onFocusLost(self, _, note, index):
@@ -71,16 +70,15 @@ class EditManager:
 
 
 def appendToneStyling(editor):
-    js = 'var css = document.styleSheets[0];'
+    js = "var css = document.styleSheets[0];"
 
-    for line in editor.note.model()['css'].split('\n'):
-        if line.startswith('.tone'):
-            js += 'css.insertRule("{}", css.cssRules.length);'.format(
-                line.rstrip())
+    for line in editor.note.model()["css"].split("\n"):
+        if line.startswith(".tone"):
+            js += 'css.insertRule("{}", css.cssRules.length);'.format(line.rstrip())
 
     editor.web.eval(js)
 
 
-addHook('loadNote', appendToneStyling)
+addHook("loadNote", appendToneStyling)
 
 EditManager()

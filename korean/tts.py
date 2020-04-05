@@ -17,17 +17,17 @@ from .lib.gtts.tts import gTTS
 from .lib.navertts.tts import NaverTTS
 
 
-def download(text, lang='ko', service='Google TTS', attempts=3):
-    filename, path = getFilename('_'.join([text, service[0], lang]), '.mp3')
+def download(text, lang="ko", service="Google TTS", attempts=3):
+    filename, path = getFilename("_".join([text, service[0], lang]), ".mp3")
 
     if os.path.exists(path) and os.stat(path).st_size > 0:
         return filename
 
     for attempt in range(attempts):
         try:
-            if service == 'Google TTS':
+            if service == "Google TTS":
                 tts = gTTS(text, lang=lang)
-            elif service == 'NAVER Papago':
+            elif service == "NAVER Papago":
                 tts = NaverTTS(text, lang=lang)
             else:
                 raise ValueError("Unrecognized service {}".format(service))
@@ -49,4 +49,4 @@ def getFilename(base, ext):
 
 
 def stripInvalidChars(s):
-    return re.sub('[\\/:\*?"<>\|]', '', s)
+    return re.sub('[\\/:\*?"<>\|]', "", s)

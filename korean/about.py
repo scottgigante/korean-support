@@ -4,25 +4,25 @@ from aqt import mw
 
 from ._version import __version__
 
-CSR_GITHUB_URL = 'https://github.com/scottgigante/korean-support'
+CSR_GITHUB_URL = "https://github.com/scottgigante/korean-support"
 
 
 def showAbout():
     dialog = QDialog(mw)
 
     label = QLabel()
-    label.setStyleSheet('QLabel { font-size: 14px; }')
+    label.setStyleSheet("QLabel { font-size: 14px; }")
 
     contributors = [
-        'Alex Griffin',
-        'Chris Hatch',
-        'Roland Sieker',
-        'Thomas TEMPÉ',
-        'Luo Li-Yan',
-        'Scott Gigante',
+        "Alex Griffin",
+        "Chris Hatch",
+        "Roland Sieker",
+        "Thomas TEMPÉ",
+        "Luo Li-Yan",
+        "Scott Gigante",
     ]
 
-    text = '''
+    text = """
 <div style="font-weight: bold">Korean Support v%s</div><br>
 <div><span style="font-weight: bold">
     Maintainer</span>: Scott Gigante &lt;scottgigante@gmail.com&gt;</div>
@@ -32,7 +32,12 @@ def showAbout():
     <br>Based on the Chinese Support add-on by Thomas TEMPÉ and many others.
     <br>If your name is missing from here, please open an issue on GitHub.
 </div>
-''' % (__version__, ', '.join(contributors), CSR_GITHUB_URL, CSR_GITHUB_URL)
+""" % (
+        __version__,
+        ", ".join(contributors),
+        CSR_GITHUB_URL,
+        CSR_GITHUB_URL,
+    )
 
     label.setText(text)
     label.setOpenExternalLinks(True)
@@ -45,5 +50,5 @@ def showAbout():
     layout.addWidget(buttonBox)
 
     dialog.setLayout(layout)
-    dialog.setWindowTitle('About')
+    dialog.setWindowTitle("About")
     dialog.exec_()

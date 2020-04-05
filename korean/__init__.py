@@ -28,7 +28,7 @@ from .models import advanced
 from .models import basic
 from .ui import loadMenu
 
-addHook('profileLoaded', loadMenu)
+addHook("profileLoaded", loadMenu)
 
 # hack to force updates
 mgr = mw.addonManager
@@ -42,4 +42,6 @@ except:
     updated = False
 
 if updated:
-    showInfo("An update is available for Korean Support. Please update it by going to Tools -> Addons -> Check for Updates.")
+    showInfo(
+        "An update is available for Korean Support. Please update it by going to Tools -> Addons -> Check for Updates."
+    )

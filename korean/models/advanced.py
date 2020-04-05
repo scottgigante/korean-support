@@ -10,7 +10,16 @@
 
 import anki.stdmodels
 from .css import style
-from .card_fields import hanja_button, deck_tags, korean, english, sound, front_side, silhouette, comment
+from .card_fields import (
+    hanja_button,
+    deck_tags,
+    korean,
+    english,
+    sound,
+    front_side,
+    silhouette,
+    comment,
+)
 
 
 # List of fields
@@ -21,15 +30,13 @@ fields_list = ["Korean", "English", "Hanja", "Sound", "Silhouette", "Comment"]
 # Card templates
 ######################################################################
 
-recognition_front = u'\n<br>'.join([deck_tags, korean])
+recognition_front = u"\n<br>".join([deck_tags, korean])
 
-recall_front = u'\n<br>'.join([deck_tags, english, silhouette])
+recall_front = u"\n<br>".join([deck_tags, english, silhouette])
 
-recognition_back = u'\n<br>'.join([front_side, english, sound,
-                                   hanja_button, comment])
+recognition_back = u"\n<br>".join([front_side, english, sound, hanja_button, comment])
 
-recall_back = u'\n<br>'.join([front_side, korean, sound,
-                              hanja_button, comment])
+recall_back = u"\n<br>".join([front_side, korean, sound, hanja_button, comment])
 
 
 # Add model for korean word to Anki
@@ -46,16 +53,16 @@ def add_model(col):
         fm = mm.newField(f)
         mm.addField(m, fm)
     t = mm.newTemplate(u"Recognition")
-    t['qfmt'] = recognition_front
-    t['afmt'] = recognition_back
+    t["qfmt"] = recognition_front
+    t["afmt"] = recognition_back
     mm.addTemplate(m, t)
     t = mm.newTemplate(u"Recall")
-    t['qfmt'] = recall_front
-    t['afmt'] = recall_back
+    t["qfmt"] = recall_front
+    t["afmt"] = recall_back
     mm.addTemplate(m, t)
 
-    m['css'] += style
-    m['addon'] = model_name
+    m["css"] += style
+    m["addon"] = model_name
     mm.add(m)
     # recognition card
     return m

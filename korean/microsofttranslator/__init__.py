@@ -8,7 +8,7 @@
 
 """
 
-__all__ = ['Translator', 'TranslateApiException']
+__all__ = ["Translator", "TranslateApiException"]
 
 try:
     import simplejson as json
@@ -23,13 +23,13 @@ import warnings
 
 class ArgumentOutOfRangeException(Exception):
     def __init__(self, message):
-        self.message = message.replace('ArgumentOutOfRangeException: ', '')
+        self.message = message.replace("ArgumentOutOfRangeException: ", "")
         super(ArgumentOutOfRangeException, self).__init__(self.message)
 
 
 class TranslateApiException(Exception):
     def __init__(self, message, *args):
-        self.message = message.replace('TranslateApiException: ', '')
+        self.message = message.replace("TranslateApiException: ", "")
         super(TranslateApiException, self).__init__(self.message, *args)
 
 
@@ -42,9 +42,14 @@ class Translator(object):
     base_url = "http://api.microsofttranslator.com/V2/Ajax.svc"
 
     def __init__(
-            self, client_id, client_secret,
-            scope="http://api.microsofttranslator.com",
-            grant_type="client_credentials", app_id=None, debug=False):
+        self,
+        client_id,
+        client_secret,
+        scope="http://api.microsofttranslator.com",
+        grant_type="client_credentials",
+        app_id=None,
+        debug=False,
+    ):
         """
 
 
@@ -63,9 +68,13 @@ class Translator(object):
             See: http://msdn.microsoft.com/en-us/library/hh454950
         """
         if app_id is not None:
-            warnings.warn("""app_id is deprected since v0.4.
+            warnings.warn(
+                """app_id is deprected since v0.4.
             See: http://msdn.microsoft.com/en-us/library/hh454950
-            """, DeprecationWarning, stacklevel=2)
+            """,
+                DeprecationWarning,
+                stacklevel=2,
+            )
 
         self.client_id = client_id
         self.client_secret = client_secret
@@ -95,24 +104,23 @@ class Translator(object):
         :return: The access token to be used with subsequent requests
         """
         args = {
-            'client_id': self.client_id,
-            'client_secret': self.client_secret,
-            'scope': self.scope,
-            'grant_type': self.grant_type
+            "client_id": self.client_id,
+            "client_secret": self.client_secret,
+            "scope": self.scope,
+            "grant_type": self.grant_type,
         }
         response = requests.post(
-            'https://datamarket.accesscontrol.windows.net/v2/OAuth2-13',
-            data=args
+            "https://datamarket.accesscontrol.windows.net/v2/OAuth2-13", data=args
         ).json()
 
         self.logger.debug(response)
 
         if "error" in response:
             raise TranslateApiException(
-                response.get('error_description', 'No Error Description'),
-                response.get('error', 'Unknown Error')
+                response.get("error_description", "No Error Description"),
+                response.get("error", "Unknown Error"),
             )
-        return response['access_token']
+        return response["access_token"]
 
     def call(self, path, params):
         """Calls the given path with the params urlencoded
@@ -126,29 +134,34 @@ class Translator(object):
         resp = requests.get(
             "/".join([self.base_url, path]),
             params=params,
-            headers={'Authorization': 'Bearer %s' % self.access_token}
+            headers={"Authorization": "Bearer %s" % self.access_token},
         )
-        resp.encoding = 'UTF-8-sig'
+        resp.encoding = "UTF-8-sig"
         rv = resp.json()
 
-        if isinstance(rv, six.string_types) and \
-                rv.startswith("ArgumentOutOfRangeException"):
+        if isinstance(rv, six.string_types) and rv.startswith(
+            "ArgumentOutOfRangeException"
+        ):
             raise ArgumentOutOfRangeException(rv)
 
-        if isinstance(rv, six.string_types) and \
-                rv.startswith("TranslateApiException"):
+        if isinstance(rv, six.string_types) and rv.startswith("TranslateApiException"):
             raise TranslateApiException(rv)
 
-        if isinstance(rv, six.string_types) and \
-                rv.startswith(("ArgumentException: "
-                               "The incoming token has expired")):
+        if isinstance(rv, six.string_types) and rv.startswith(
+            ("ArgumentException: " "The incoming token has expired")
+        ):
             self.access_token = None
             return self.call(path, params)
         return rv
 
     def translate(
-            self, text, to_lang, from_lang=None,
-            content_type='text/plain', category='general'):
+        self,
+        text,
+        to_lang,
+        from_lang=None,
+        content_type="text/plain",
+        category="general",
+    ):
         """Translates a text string from one language to another.
 
         :param text: A string representing the text to translate.
@@ -164,13 +177,13 @@ class Translator(object):
             supported category is "general".
         """
         params = {
-            'text': text.encode('utf8'),
-            'to': to_lang,
-            'contentType': content_type,
-            'category': category,
+            "text": text.encode("utf8"),
+            "to": to_lang,
+            "contentType": content_type,
+            "category": category,
         }
         if from_lang is not None:
-            params['from'] = from_lang
+            params["from"] = from_lang
         return self.call("Translate", params)
 
     def translate_array(self, texts, to_lang, from_lang=None, **options):
@@ -197,19 +210,19 @@ class Translator(object):
                     same contents will be returned in the response.
         """
         options = {
-            'Category': "general",
-            'Contenttype': "text/plain",
-            'Uri': '',
-            'User': 'default',
-            'State': ''
+            "Category": "general",
+            "Contenttype": "text/plain",
+            "Uri": "",
+            "User": "default",
+            "State": "",
         }.update(options)
         params = {
-            'texts': json.dumps(texts),
-            'to': to_lang,
-            'options': json.dumps(options),
+            "texts": json.dumps(texts),
+            "to": to_lang,
+            "options": json.dumps(options),
         }
         if from_lang is not None:
-            params['from'] = from_lang
+            params["from"] = from_lang
 
         return self.call("TranslateArray", params)
 
@@ -217,13 +230,11 @@ class Translator(object):
         """Fetches the languages supported by Microsoft Translator
            Returns list of languages
         """
-        return self.call('GetLanguagesForTranslate', '')
+        return self.call("GetLanguagesForTranslate", "")
 
     def detect_language(self, text):
         """Detects language of given string
            Returns two letter language - Example : fr
         """
-        params = {
-            'text': text.encode('utf8')
-        }
-        return self.call('Detect', params)
+        params = {"text": text.encode("utf8")}
+        return self.call("Detect", params)

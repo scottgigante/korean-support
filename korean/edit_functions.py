@@ -14,6 +14,7 @@ import traceback
 from .lib import kengdic
 from . import tts
 from .config import korean_support_config
+
 # from .microsofttranslator import Translator as MSTranslator
 
 # Essential Edit functions
@@ -26,12 +27,12 @@ def no_color(text):
     "Remove tone color info and other HTML pollutions"
     if text is None:
         return ""
-    text = text.replace(r'&nbsp;', '')
+    text = text.replace(r"&nbsp;", "")
     text = no_hidden(text)
     # remove color info
-    text = re.sub(r'<font color=.*?>(.*?)</font>', r'\1', text)
+    text = re.sub(r"<font color=.*?>(.*?)</font>", r"\1", text)
     # remove Anki1 Pinyin Toolkit coloring
-    text = re.sub(r'<span style=.*?>(.*?)</span>', r'\1', text)
+    text = re.sub(r"<span style=.*?>(.*?)</span>", r"\1", text)
     return text
 
 
@@ -41,6 +42,7 @@ def silhouette(hangul):
     Eg: 以A为B -> _A_B
     Eg: 哈密瓜 -> _ _ _
     """
+
     def insert_spaces(p):
         r = ""
         for i in p.group(0):
@@ -86,7 +88,7 @@ def hanja(hangul):
 
 
 def translate(text, from_lang="ko", to_lang=None, progress_bar=True):
-    '''Translate to a different language.
+    """Translate to a different language.
     Only installed dictionaries can be used.
 
     to_lang possible values : "local_en"
@@ -94,7 +96,7 @@ def translate(text, from_lang="ko", to_lang=None, progress_bar=True):
 
     if to_lang is unspecified, the default language will be used.
     if progress_bar is True, then will display a progress bar.
-    '''
+    """
     global MS_translator_object
     text = cleanup(text)
     if "" == text:
@@ -107,7 +109,8 @@ def translate(text, from_lang="ko", to_lang=None, progress_bar=True):
         return translate_local(text)
     else:  # Ms translate
         raise NotImplementedError(
-            "{} translation not currently supported".format(to_lang))
+            "{} translation not currently supported".format(to_lang)
+        )
     #     ret = ""
     #     if progress_bar:
     #         mw.progress.start(label="MS Translator lookup", immediate=True)
@@ -127,7 +130,7 @@ def translate(text, from_lang="ko", to_lang=None, progress_bar=True):
 
 
 def cleanup(txt):
-    '''Remove all HTML, tags, and others.'''
+    """Remove all HTML, tags, and others."""
     if not txt:
         return ""
     txt = re.sub(r"<.*?>", "", txt, flags=re.S)
@@ -140,7 +143,7 @@ def cleanup(txt):
 
 
 def sound(text, source=None):
-    '''
+    """
     Returns sound tag for a given Hangul string.
 
     If the sound does not already exist in the media directory, then
@@ -154,10 +157,10 @@ def sound(text, source=None):
 
     Source is either the TTS speech engine name.
     If empty, taking the one from the menu.
-    '''
+    """
     text = cleanup(text)
     if source is None:
-        source = korean_support_config.options['speech']
+        source = korean_support_config.options["speech"]
 
     text = no_sound(text)
     text = re.sub("<.*?>", "", text)
@@ -166,28 +169,33 @@ def sound(text, source=None):
 
     if source in ["Google TTS", "NAVER Papago"]:
         try:
-            return "[sound:{}]".format(tts.download(
-                text, 'ko', service=source))
+            return "[sound:{}]".format(tts.download(text, "ko", service=source))
         except Exception as e:
-            if korean_support_config.options['debug']:
+            if korean_support_config.options["debug"]:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
-                showInfo("{} failed.\n{}".format(
-                    source,
-                    ''.join(traceback.format_exception(
-                        exc_type, exc_value, exc_traceback))))
+                showInfo(
+                    "{} failed.\n{}".format(
+                        source,
+                        "".join(
+                            traceback.format_exception(
+                                exc_type, exc_value, exc_traceback
+                            )
+                        ),
+                    )
+                )
             return ""
     else:
         return ""
 
 
 def get_any(fields, dico):
-    '''Get the 1st valid field from a list
+    """Get the 1st valid field from a list
     Scans all field names listed as "fields", to find one that exists,
     then returns its value.
     If none exists, returns an empty string.
 
     Case-insensitive.
-    '''
+    """
     for f in fields:
         for k, v in dico.items():
             try:
@@ -207,11 +215,11 @@ def setAll(fields, note, to):
 
 
 def has_field(fields, dico):
-    '''
+    """
     Check if one of the named fields exists in the field list
 
     Case-insensitive.
-    '''
+    """
     for d, v in dico.items():
         for f in fields:
             try:
@@ -223,14 +231,14 @@ def has_field(fields, dico):
 
 
 def no_sound(text):
-    '''
+    """
     Removes the [sound:xxx.mp3] tag that's added by Anki when you record
     sound into a field.
 
     If you don't remove it before taking data from one field to another,
     it will likely be duplicated, and the sound will play twice.
-    '''
-    return re.sub(r'\[sound:.*?]', '', text)
+    """
+    return re.sub(r"\[sound:.*?]", "", text)
 
 
 # Extra support functions and parameters
@@ -241,7 +249,12 @@ MS_translator_object = None
 # monkey patch missing pkg_resources
 kengdic.Kengdic.__sqlite_path = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
-    "lib", "kendic", "kengdic", "sqlite", "kengdic_2011.sqlite")
+    "lib",
+    "kendic",
+    "kengdic",
+    "sqlite",
+    "kengdic_2011.sqlite",
+)
 db = kengdic.Kengdic()
 
 

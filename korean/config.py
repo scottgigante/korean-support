@@ -10,11 +10,10 @@ from aqt import mw
 
 
 class ConfigManager:
-
     def __init__(self):
         self.tips = []
         self.options = mw.addonManager.getConfig(__name__)
-        addHook('unloadProfile', self.save)
+        addHook("unloadProfile", self.save)
 
     def save(self):
         try:
@@ -26,10 +25,11 @@ class ConfigManager:
         self.options[name] = value
 
     def get_next_tip(self):
-        if self.options['startup_tip_number'] < len(self.tips):
-            self.set_option('startup_tip_number',
-                            self.options['startup_tip_number'] + 1)
-            return self.tips[self.options['startup_tip_number'] - 1]
+        if self.options["startup_tip_number"] < len(self.tips):
+            self.set_option(
+                "startup_tip_number", self.options["startup_tip_number"] + 1
+            )
+            return self.tips[self.options["startup_tip_number"] - 1]
         else:
             return (None, None)
 
