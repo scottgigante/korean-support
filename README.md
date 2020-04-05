@@ -33,6 +33,9 @@ For bug reports, issues and feature requests, and to discuss contributing to the
 
 ### History
 
+#### v0.7-beta (2020.04.05)
+* Bugfix
+
 #### v0.6-beta (2020.01.30)
 * Anki 2.1.20 compatibility update
 
