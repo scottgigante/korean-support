@@ -169,9 +169,6 @@ def fill_translation():
 
             hangul = get_any(config.options["fields"]["hangul"], note_dict)
             empty = len(get_any(config.options["fields"]["meaning"], note_dict))
-            empty += len(get_any(config.options["fields"]["english"], note_dict))
-            empty += len(get_any(config.options["fields"]["german"], note_dict))
-            empty += len(get_any(config.options["fields"]["french"], note_dict))
             if not (empty):
                 result = update_Meaning_fields(hangul, note_dict)
 
