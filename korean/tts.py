@@ -32,14 +32,12 @@ def download(text, lang="ko", service="Google TTS", attempts=3):
             else:
                 raise ValueError("Unrecognized service {}".format(service))
             tts.save(path)
-            break
-        except Exception as e:
-            error = str(e)
-            tts = None
-    if tts is not None:
-        return filename
-    else:
-        raise RuntimeError(error)
+            return filename
+        except:
+            if attempt >= attempts - 1:
+                raise
+            else:
+                pass
 
 
 def getFilename(base, ext):
