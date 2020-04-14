@@ -28,6 +28,11 @@ speech_options = [
     "NAVER Papago",
 ]
 
+naver_gender_options = [
+    ("Female", "f"),
+    ("Male", "m"),
+]
+
 msTranslateLanguages = [
     ("Arabic", "ar"),
     ("Bulgarian", "bg"),
@@ -132,7 +137,13 @@ def update_dict_action_checkboxes():
             t == korean_support_config.options["speech"]
         )
 
+    for _, i in naver_gender_options:
+        ui_actions["naver_tts_gender_" + i].setChecked(
+            i == korean_support_config.options["naver_tts_gender"]
+        )
+
     ui_actions["debug"].setChecked(korean_support_config.options["debug"])
+    ui_actions["tts_slow"].setChecked(korean_support_config.options["tts_slow"])
 
 
 def loadMenu():
@@ -151,10 +162,19 @@ def loadMenu():
     #        ui_actions['dict_' + code] = add_action(
     #            name, submenu, set_dict_constructor(code), True)
 
-    submenu = menu.addMenu(_("Set speech engine"))
+    submenu = menu.addMenu(_("Text-to-speech"))
+    subsubmenu = submenu.addMenu(_("Set speech engine"))
     for i in speech_options:
         ui_actions["speech_" + i] = add_action(
-            i, submenu, set_option_constructor("speech", i), True
+            i, subsubmenu, set_option_constructor("speech", i), True
+        )
+    ui_actions["tts_slow"] = add_action(
+        _("Use slow speed"), submenu, toggle_option_constructor("tts_slow"), True
+    )
+    subsubmenu = submenu.addMenu(_("NAVER Papago Gender"))
+    for name, i in naver_gender_options:
+        ui_actions["naver_tts_gender_" + i] = add_action(
+            name, subsubmenu, set_option_constructor("naver_tts_gender", i), True
         )
 
     submenu = menu.addMenu(_("Fill incomplete notes"))

@@ -15,10 +15,19 @@ from aqt import mw
 
 from .lib.gtts.tts import gTTS
 from .lib.navertts.tts import NaverTTS
+from .config import korean_support_config
 
 
 def download(text, lang="ko", service="Google TTS", attempts=3):
-    filename, path = getFilename("_".join([text, service[0], lang]), ".mp3")
+    slow = korean_support_config.options["tts_slow"]
+    gender = korean_support_config.options["naver_tts_gender"]
+
+    filename = [text, service[0], lang]
+    if slow:
+        filename.append("slow")
+    if service == "NAVER Papago" and gender == "m":
+        filename.append("male")
+    filename, path = getFilename("_".join(filename), ".mp3")
 
     if os.path.exists(path) and os.stat(path).st_size > 0:
         return filename
@@ -26,9 +35,10 @@ def download(text, lang="ko", service="Google TTS", attempts=3):
     for attempt in range(attempts):
         try:
             if service == "Google TTS":
-                tts = gTTS(text, lang=lang)
+                tts = gTTS(text, lang=lang, slow=slow)
             elif service == "NAVER Papago":
-                tts = NaverTTS(text, lang=lang)
+                speed = "slow" if slow else "normal"
+                tts = NaverTTS(text, lang=lang, speed=speed, gender=gender)
             else:
                 raise ValueError("Unrecognized service {}".format(service))
             tts.save(path)

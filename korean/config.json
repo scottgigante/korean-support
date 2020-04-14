@@ -4,6 +4,8 @@
     "show_startup_tips": false,
     "debug": false,
     "speech": "Google TTS",
+    "tts_slow": false,
+    "naver_tts_gender": "f",
     "startup_tip_number": 0,
     "transcription": "unknown",
     "fields": {
