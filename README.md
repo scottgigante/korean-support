@@ -17,7 +17,7 @@ Support for Korean language study for Anki 2.1.
 * [Frequently asked questions](https://github.com/scottgigante/korean-support/wiki/Frequently-asked-questions)
 * [Learning tips](https://github.com/scottgigante/korean-support/wiki/Learning-Tips)
 
-Use the supplied Korean (basic) or Korean (advanced) note type, or use your existing note type (just make sure your field names are called "Korean", "English", "Hanja", and "Sound".) 
+Use the supplied Korean (basic) or Korean (advanced) note type, or use your existing note type (just make sure your field names are called "Korean", "English", "Hanja", and "Sound".)
 
 For bug reports, issues and feature requests, and to discuss contributing to the add-on:
 * [Issue Tracker](https://github.com/scottgigante/korean-support/issues)
@@ -32,6 +32,9 @@ For bug reports, issues and feature requests, and to discuss contributing to the
 * Google Translate
 
 ### History
+
+#### v0.8-beta (2020.04.14)
+* Added gender and speed selection for TTS
 
 #### v0.7-beta (2020.04.05)
 * Bugfix
