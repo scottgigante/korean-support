@@ -6,6 +6,7 @@ from korean.edit_functions import translate_local
 from .fixtures.fixtures_edit_functions import mocked_krneng_dic
 
 
+# db tests modeled off results from: https://github.com/garfieldnate/kengdic
 @pytest.mark.parametrize(
     "test_search_hangul, expected_english_res",
     [("밥", ["rice, a meal"]), ("사랑", ["love"]), ("나라", ["country"])],
