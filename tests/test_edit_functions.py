@@ -95,14 +95,16 @@ def test_hanja(mocked_translate_local):
     mwo_밥_first = MockWordObject()
     mwo_일월_second = MockWordObject()
 
-    mwo_밥_first.english = "食"
-    mwo_일월_second.english = "一月"
+    mwo_밥_first.hanja = "食"
+    mwo_일월_second.hanja = "一月"
 
     mock_translate_local_results = [mwo_밥_first, mwo_일월_second]
 
     mocked_translate_local.return_value = mock_translate_local_results
 
-    expected_built_str = "食,一月"
+    expected_built_str = "食，一月"
+
+    assert hanja("밥") == expected_built_str
 
 
 # TODO
