@@ -20,6 +20,7 @@ def showAbout():
         "Thomas TEMPÉ",
         "Luo Li-Yan",
         "Scott Gigante",
+        "Paul Lee"
     ]
 
     text = """
