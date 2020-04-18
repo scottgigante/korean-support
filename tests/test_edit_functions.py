@@ -5,6 +5,7 @@ from korean.edit_functions import english
 from korean.edit_functions import translate_local
 from korean.edit_functions import no_hidden
 from korean.edit_functions import no_color
+from korean.edit_functions import silhouette
 from .fixtures.fixtures_edit_functions import mocked_krneng_dic
 from .fixtures.fixtures_edit_functions import mocked_translate_local
 from .fixtures.fixtures_edit_functions import MockWordObject
@@ -22,6 +23,13 @@ from .fixtures.fixtures_edit_functions import MockWordObject
 )
 def test_no_color(test_txt, expected_txt):
     assert no_color(test_txt) == expected_txt
+
+
+@pytest.mark.parametrize(
+    "test_hangul, expected_hangul", [("한글", "_ _"), ("한국C", "_ _C")]
+)
+def test_silhouette(test_hangul, expected_hangul):
+    assert silhouette(test_hangul) == expected_hangul
 
 
 @pytest.mark.parametrize(
