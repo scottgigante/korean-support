@@ -4,9 +4,24 @@ from korean.edit_functions import add_diaeresis
 from korean.edit_functions import english
 from korean.edit_functions import translate_local
 from korean.edit_functions import no_hidden
+from korean.edit_functions import no_color
 from .fixtures.fixtures_edit_functions import mocked_krneng_dic
 from .fixtures.fixtures_edit_functions import mocked_translate_local
 from .fixtures.fixtures_edit_functions import MockWordObject
+
+
+@pytest.mark.parametrize(
+    "test_txt, expected_txt",
+    [
+        (None, ""),
+        ("<!--txt--><p>txt</p>", "<p>txt</p>"),
+        ("&nbsp;", ""),
+        ("<font color=></font>", ""),
+        ("<span style=></span>", ""),
+    ],
+)
+def test_no_color(test_txt, expected_txt):
+    assert no_color(test_txt) == expected_txt
 
 
 @pytest.mark.parametrize(
