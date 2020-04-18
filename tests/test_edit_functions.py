@@ -4,6 +4,8 @@ from korean.edit_functions import add_diaeresis
 from korean.edit_functions import english
 from korean.edit_functions import translate_local
 from .fixtures.fixtures_edit_functions import mocked_krneng_dic
+from .fixtures.fixtures_edit_functions import mocked_translate_local
+from .fixtures.fixtures_edit_functions import MockWordObject
 
 
 # db tests modeled off results from: https://github.com/garfieldnate/kengdic
@@ -33,7 +35,20 @@ def test_translate_local_multiple_results(
     assert translate_local(test_search_hangul) == expected_english_res
 
 
-# TODO: translate_local failure case.
+def test_english(mocked_translate_local):
+    mwo_밥_first = MockWordObject()
+    mwo_밥_second = MockWordObject()
+
+    mwo_밥_first.english = "a meal"
+    mwo_밥_second.english = "rice"
+
+    mock_translate_local_results = [mwo_밥_first, mwo_밥_second]
+
+    mocked_translate_local.return_value = mock_translate_local_results
+
+    expected_built_str = "a meal\n<br>rice"
+
+    assert english("밥") == expected_built_str
 
 
 @pytest.mark.parametrize(
