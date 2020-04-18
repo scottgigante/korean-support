@@ -3,9 +3,22 @@ from unittest.mock import patch
 from korean.edit_functions import add_diaeresis
 from korean.edit_functions import english
 from korean.edit_functions import translate_local
+from korean.edit_functions import no_hidden
 from .fixtures.fixtures_edit_functions import mocked_krneng_dic
 from .fixtures.fixtures_edit_functions import mocked_translate_local
 from .fixtures.fixtures_edit_functions import MockWordObject
+
+
+@pytest.mark.parametrize(
+    "test_txt, expected_txt",
+    [
+        ("<!--txt-->", ""),
+        ("<p>txt</p>", "<p>txt</p>"),
+        ("<!--txt--><p>txt</p>", "<p>txt</p>"),
+    ],
+)
+def test_no_hidden(test_txt, expected_txt):
+    assert no_hidden(test_txt) == expected_txt
 
 
 # db tests modeled off results from: https://github.com/garfieldnate/kengdic
