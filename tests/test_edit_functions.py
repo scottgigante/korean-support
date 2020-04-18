@@ -7,6 +7,7 @@ from korean.edit_functions import no_hidden
 from korean.edit_functions import no_color
 from korean.edit_functions import silhouette
 from korean.edit_functions import hanja
+from korean.edit_functions import cleanup
 from .fixtures.fixtures_edit_functions import mocked_krneng_dic
 from .fixtures.fixtures_edit_functions import mocked_translate_local
 from .fixtures.fixtures_edit_functions import MockWordObject
@@ -102,6 +103,44 @@ def test_hanja(mocked_translate_local):
     mocked_translate_local.return_value = mock_translate_local_results
 
     expected_built_str = "食,一月"
+
+
+# TODO
+def test_translate():
+    pass
+
+
+@pytest.mark.parametrize(
+    "test_html, expected_html",
+    [("<>", ""), ("&nbsp;", ""), ("\n\v", ""), ("{}0,9", "{}0,9")],
+)
+def test_cleanup(test_html, expected_html):
+    assert cleanup(test_html) == expected_html
+
+
+# TODO
+def test_sound():
+    pass
+
+
+# TODO
+def test_setAll():
+    pass
+
+
+# TODO
+def test_has_field():
+    pass
+
+
+# TODO
+def test_no_sound():
+    pass
+
+
+# TODO
+def test_extract_sound_tags():
+    pass
 
 
 @pytest.mark.parametrize(
