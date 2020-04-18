@@ -6,6 +6,7 @@ class MockWordObject:
 
     def __init__(self):
         self.english = ""
+        self.hanja = ""
 
 
 @pytest.fixture()

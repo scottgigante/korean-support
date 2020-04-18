@@ -6,6 +6,7 @@ from korean.edit_functions import translate_local
 from korean.edit_functions import no_hidden
 from korean.edit_functions import no_color
 from korean.edit_functions import silhouette
+from korean.edit_functions import hanja
 from .fixtures.fixtures_edit_functions import mocked_krneng_dic
 from .fixtures.fixtures_edit_functions import mocked_translate_local
 from .fixtures.fixtures_edit_functions import MockWordObject
@@ -85,6 +86,22 @@ def test_english(mocked_translate_local):
     expected_built_str = "a meal\n<br>rice"
 
     assert english("밥") == expected_built_str
+
+
+def test_hanja(mocked_translate_local):
+    # these hanja are unrelated, but used for unittesting purposes
+
+    mwo_밥_first = MockWordObject()
+    mwo_일월_second = MockWordObject()
+
+    mwo_밥_first.english = "食"
+    mwo_일월_second.english = "一月"
+
+    mock_translate_local_results = [mwo_밥_first, mwo_일월_second]
+
+    mocked_translate_local.return_value = mock_translate_local_results
+
+    expected_built_str = "食,一月"
 
 
 @pytest.mark.parametrize(
