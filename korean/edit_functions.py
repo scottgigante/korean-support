@@ -61,8 +61,7 @@ def no_hidden(text):
 
 
 def translate_local(text):
-    """Translate using local dictionary.
-    """
+    """Translate using local dictionary."""
     words = db.search(korean=text)
     return words
 
