@@ -33,6 +33,9 @@ For bug reports, issues and feature requests, and to discuss contributing to the
 
 ### History
 
+#### v0.10-beta (2021.02.04)
+* Update Google TTS submodule
+
 #### v0.9-beta (2021.01.21)
 * Updated to new version of NaverTTS using CLOVA dictionary API and fix Google TTS.
 
