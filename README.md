@@ -33,6 +33,9 @@ For bug reports, issues and feature requests, and to discuss contributing to the
 
 ### History
 
+#### v0.11-beta (2021.02.24)
+* Add 'fill missing hanja' function
+
 #### v0.10-beta (2021.02.04)
 * Update Google TTS submodule
 
