@@ -17,6 +17,7 @@ from .edit_behavior import (
     update_Sound_fields,
     update_Meaning_fields,
     update_Silhouette_fields,
+    update_Hanja_fields,
 )
 from .edit_functions import has_field, get_any, cleanup
 
@@ -262,6 +263,65 @@ def fill_silhouette():
 
             # write back to note from dict and flush
             for f in config.options["fields"]["silhouette"]:
+                if f in note_dict and note_dict[f] != note[f]:
+                    note[f] = note_dict[f]
+                    d_success += 1
+            note.flush()
+
+    msg_string = (
+        "<b>Update complete!</b> {hangul:s}<br>" "<b>Updated:</b> {filled:d}"
+    ).format(
+        hangul=cleanup(no_html(get_any(config.options["fields"]["hangul"], note_dict))),
+        filled=d_success,
+    )
+    mw.progress.finish()
+    showInfo(msg_string)
+
+
+############################################################
+
+
+def fill_hanja():
+    if not (
+        askUser(
+            "<div>This will update the <i>Hanja</i> fields in the "
+            "current deck.</div>\n\n"
+            "<div>Please back-up your Anki deck first!</div>\n\n"
+            "<div><b>Continue?</b></div>"
+        )
+    ):
+        return False
+
+    query_str = "deck:current"
+    d_scanned = 0
+    d_has_fields = 0
+    d_success = 0
+    notes = Finder(mw.col).findNotes(query_str)
+    mw.progress.start(immediate=True, min=0, max=len(notes))
+    for noteId in notes:
+        d_scanned += 1
+        note = mw.col.getNote(noteId)
+        note_dict = dict(note)  # edit_function routines require a dict
+        if has_field(config.options["fields"]["hanja"], note_dict):
+            d_has_fields += 1
+
+            msg_string = (
+                "<b>Processing:</b> {hangul:s}<br>" "<b>Updated:</b> {filled:d}"
+            ).format(
+                hangul=cleanup(
+                    no_html(get_any(config.options["fields"]["hangul"], note_dict))
+                ),
+                filled=d_success,
+            )
+            mw.progress.update(label=msg_string, value=d_scanned)
+
+            hangul = get_any(config.options["fields"]["hangul"], note_dict)
+
+            # Update Hanja
+            update_Hanja_fields(hangul, note_dict)
+
+            # write back to note from dict and flush
+            for f in config.options["fields"]["hanja"]:
                 if f in note_dict and note_dict[f] != note[f]:
                     note[f] = note_dict[f]
                     d_success += 1
