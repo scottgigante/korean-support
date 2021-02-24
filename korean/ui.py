@@ -12,7 +12,7 @@ from anki.lang import _
 
 from .about import CSR_GITHUB_URL, showAbout
 from .config import korean_support_config
-from .fill_missing import fill_silhouette, fill_sounds, fill_translation
+from .fill_missing import fill_silhouette, fill_sounds, fill_translation, fill_hanja
 
 
 ui_actions = {}
@@ -181,6 +181,7 @@ def loadMenu():
     add_action(_("Fill missing sounds"), submenu, fill_sounds)
     add_action(_("Fill translation"), submenu, fill_translation)
     add_action(_("Fill silhouette"), submenu, fill_silhouette)
+    add_action(_("Fill hanja"), submenu, fill_hanja)
 
     submenu = menu.addMenu(_("Help"))
     add_action(
