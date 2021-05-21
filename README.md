@@ -33,6 +33,9 @@ For bug reports, issues and feature requests, and to discuss contributing to the
 
 ### History
 
+#### v0.12-beta (2021.05.21)
+* Bugfix
+
 #### v0.11-beta (2021.02.24)
 * Add 'fill missing hanja' function
 
