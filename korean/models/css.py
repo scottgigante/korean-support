@@ -8,7 +8,7 @@
 CSS used by the different Korean models.
 """
 
-style = u"""\
+style = """\
 .card { word-wrap: break-word; }
 
 .win .hanja { font-family: "MS Mincho", "ＭＳ 明朝"; }
