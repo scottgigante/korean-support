@@ -8,9 +8,9 @@
 # License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 #
 
-deck_tags = u"<div class=tags>{{Deck}}{{#Tags}} -- {{Tags}}{{/Tags}}</div><br>"
+deck_tags = "<div class=tags>{{Deck}}{{#Tags}} -- {{Tags}}{{/Tags}}</div><br>"
 
-hanja_button = u"""\
+hanja_button = """\
 {{#Hanja}}
 <button class="button" type="button" onclick="
     if (document.getElementById('hanja').style.display=='none') {
@@ -26,17 +26,17 @@ hanja_button = u"""\
 </div>
 {{/Hanja}}"""
 
-korean = u"<span class=korean>{{Korean}}</span>"
+korean = "<span class=korean>{{Korean}}</span>"
 
-english = u"<span class=english>{{English}}</span>"
+english = "<span class=english>{{English}}</span>"
 
-silhouette = u"<div class=korean>{{Silhouette}}</span>"
+silhouette = "<div class=korean>{{Silhouette}}</span>"
 
-comment = u"<div class=comment>{{Comment}}</span>"
+comment = "<div class=comment>{{Comment}}</span>"
 
-sound = u"<!-- {{Sound}}-->"
+sound = "<!-- {{Sound}}-->"
 
-front_side = u"""\
+front_side = """\
 {{FrontSide}}
 <hr id=answer>
 """

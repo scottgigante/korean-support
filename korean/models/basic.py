@@ -20,13 +20,13 @@ fields_list = ["Korean", "English", "Hanja", "Sound"]
 # Card templates
 ######################################################################
 
-recognition_front = u"\n<br>".join([deck_tags, korean])
+recognition_front = "\n<br>".join([deck_tags, korean])
 
-recall_front = u"\n<br>".join([deck_tags, english])
+recall_front = "\n<br>".join([deck_tags, english])
 
-recognition_back = u"\n<br>".join([front_side, english, sound, hanja_button])
+recognition_back = "\n<br>".join([front_side, english, sound, hanja_button])
 
-recall_back = u"\n<br>".join([front_side, korean, sound, hanja_button])
+recall_back = "\n<br>".join([front_side, korean, sound, hanja_button])
 
 
 # Add model for chinese word to Anki
@@ -42,12 +42,12 @@ def add_model_simp(col):
         field = col.models.newField(field_name)
         col.models.addField(model, field)
     # recognition card
-    t = col.models.newTemplate(u"Recognition")
+    t = col.models.newTemplate("Recognition")
     t["qfmt"] = recognition_front
     t["afmt"] = recognition_back
     col.models.addTemplate(model, t)
     # recall card
-    t = col.models.newTemplate(u"Recall")
+    t = col.models.newTemplate("Recall")
     t["qfmt"] = recall_front
     t["afmt"] = recall_back
     col.models.addTemplate(model, t)

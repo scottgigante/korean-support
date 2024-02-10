@@ -33,6 +33,11 @@ For bug reports, issues and feature requests, and to discuss contributing to the
 
 ### History
 
+#### v0.13-beta (2024.02.02)
+* Anki 23.10 compatibility update
+* Update to PyQT6
+* Update Google TTS submodule
+
 #### v0.12-beta (2021.05.21)
 * Bugfix
 
