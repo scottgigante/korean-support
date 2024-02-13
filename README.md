@@ -33,8 +33,8 @@ For bug reports, issues and feature requests, and to discuss contributing to the
 
 ### History
 
-#### v0.15-beta (2024.02.12)
-* Bugfix
+#### v0.17-beta (2024.02.13)
+* Bugfix to PyQT compatibility
 
 #### v0.14-beta (2024.02.02)
 * Anki 23.10 compatibility update
