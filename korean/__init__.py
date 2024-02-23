@@ -19,8 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from anki.hooks import addHook
-from aqt import mw, addons
+from aqt import mw, addons, gui_hooks
 from aqt.utils import showInfo
 
 from . import edit
@@ -28,7 +27,7 @@ from .models import advanced
 from .models import basic
 from .ui import loadMenu
 
-addHook("profileLoaded", loadMenu)
+gui_hooks.main_window_did_init.append(loadMenu)
 
 # hack to force updates
 mgr = mw.addonManager
