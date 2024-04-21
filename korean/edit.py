@@ -37,7 +37,7 @@ class EditManager:
     def onToggle(self, editor):
         self.buttonOn = not self.buttonOn
 
-        mid = str(editor.note.model()["id"])
+        mid = str(editor.note.note_type()["id"])
 
         if self.buttonOn and mid not in config.options["enabledModels"]:
             config.options["enabledModels"].append(mid)
@@ -47,7 +47,7 @@ class EditManager:
         config.save()
 
     def updateButton(self, editor):
-        enabled = str(editor.note.model()["id"]) in config.options["enabledModels"]
+        enabled = str(editor.note.note_type()["id"]) in config.options["enabledModels"]
 
         if (enabled and not self.buttonOn) or (not enabled and self.buttonOn):
             editor.web.eval("toggleEditorButton(koreanSupport);")
@@ -57,7 +57,7 @@ class EditManager:
         if not self.buttonOn:
             return False
 
-        allFields = mw.col.models.fieldNames(note.model())
+        allFields = mw.col.models.field_names(note.note_type())
         field = allFields[index]
 
         if updateFields(note, field, allFields):
@@ -72,7 +72,7 @@ class EditManager:
 def appendToneStyling(editor):
     js = "var css = document.styleSheets[0];"
 
-    for line in editor.note.model()["css"].split("\n"):
+    for line in editor.note.note_type()["css"].split("\n"):
         if line.startswith(".tone"):
             js += 'css.insertRule("{}", css.cssRules.length);'.format(line.rstrip())
 
