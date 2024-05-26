@@ -8,8 +8,6 @@ from aqt import mw
 from aqt.qt import QAction
 from aqt.utils import showInfo, openLink, askUser
 
-from anki.lang import _
-
 from .about import CSR_GITHUB_URL, showAbout
 from .config import korean_support_config
 from .fill_missing import fill_silhouette, fill_sounds, fill_translation, fill_hanja

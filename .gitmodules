@@ -1,9 +1,6 @@
 [submodule "lib/kengdic"]
 	path = lib/kengdic
 	url = git@github.com:scottgigante/kengdic
-[submodule "lib/gTTS-token"]
-	path = lib/gTTS-token
-	url = git@github.com:scottgigante/gTTS-token
 [submodule "lib/NaverTTS"]
 	path = lib/NaverTTS
 	url = git@github.com:scottgigante/NaverTTS
