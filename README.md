@@ -33,6 +33,12 @@ For bug reports, issues and feature requests, and to discuss contributing to the
 
 ### History
 
+### v0.19-beta (2024.05.25)
+* Remove deprecated anki calls and fix version in about section
+
+#### v0.18-beta (2024.02.24)
+* Bugfix to menu load on profile switch.
+
 #### v0.17-beta (2024.02.13)
 * Bugfix to PyQT compatibility
 

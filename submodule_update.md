@@ -7,9 +7,6 @@ git submodule update
 cd lib/gTTS
 git remote add base https://github.com/pndurette/gTTS
 git checkout master
-cd ../gTTS-token
-git remote add base https://github.com/Boudewijn26/gTTS-token
-git checkout master
 cd ../NaverTTS
 git checkout master
 cd ../kengdic
@@ -31,9 +28,6 @@ Resolve merge.
 git add *
 git commit -m "update submodule"
 git push origin master
-
-cd ../gTTS-token
-git pull base master
 ```
 
 Resolve merge.

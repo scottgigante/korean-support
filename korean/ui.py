@@ -8,8 +8,6 @@ from aqt import mw
 from aqt.qt import QAction
 from aqt.utils import showInfo, openLink, askUser
 
-from anki.lang import _
-
 from .about import CSR_GITHUB_URL, showAbout
 from .config import korean_support_config
 from .fill_missing import fill_silhouette, fill_sounds, fill_translation, fill_hanja
@@ -18,8 +16,8 @@ from .fill_missing import fill_silhouette, fill_sounds, fill_translation, fill_h
 ui_actions = {}
 
 dictionaries = [
-    ("None", _("None")),
-    ("local_en", _("English")),
+    ("None", "None"),
+    ("local_en", "English"),
 ]
 
 speech_options = [
@@ -112,7 +110,7 @@ def set_option_constructor(option, value):
 
 
 def add_action(title, to, funct, checkable=False):
-    action = QAction(_(title), mw)
+    action = QAction(title, mw)
     if checkable:
         action.setCheckable(True)
     action.triggered.connect(funct)
@@ -151,49 +149,49 @@ def loadMenu():
 
     menu = mw.form.menuTools.addMenu("Korean Support")
 
-    submenu = menu.addMenu(_("Use local dictionary"))
+    submenu = menu.addMenu("Use local dictionary")
     for d, d_names in dictionaries:
         ui_actions["dict_" + d] = add_action(
             d_names, submenu, set_dict_constructor(d), True
         )
 
-    #    submenu = menu.addMenu(_('Use Microsoft Translate'))
+    #    submenu = menu.addMenu('Use Microsoft Translate')
     #    for name, code in msTranslateLanguages:
     #        ui_actions['dict_' + code] = add_action(
     #            name, submenu, set_dict_constructor(code), True)
 
-    submenu = menu.addMenu(_("Text-to-speech"))
-    subsubmenu = submenu.addMenu(_("Set speech engine"))
+    submenu = menu.addMenu("Text-to-speech")
+    subsubmenu = submenu.addMenu("Set speech engine")
     for i in speech_options:
         ui_actions["speech_" + i] = add_action(
             i, subsubmenu, set_option_constructor("speech", i), True
         )
     ui_actions["tts_slow"] = add_action(
-        _("Use slow speed"), submenu, toggle_option_constructor("tts_slow"), True
+        "Use slow speed", submenu, toggle_option_constructor("tts_slow"), True
     )
-    subsubmenu = submenu.addMenu(_("NAVER Papago Gender"))
+    subsubmenu = submenu.addMenu("NAVER Papago Gender")
     for name, i in naver_gender_options:
         ui_actions["naver_tts_gender_" + i] = add_action(
             name, subsubmenu, set_option_constructor("naver_tts_gender", i), True
         )
 
-    submenu = menu.addMenu(_("Fill incomplete notes"))
-    add_action(_("Fill missing sounds"), submenu, fill_sounds)
-    add_action(_("Fill translation"), submenu, fill_translation)
-    add_action(_("Fill silhouette"), submenu, fill_silhouette)
-    add_action(_("Fill hanja"), submenu, fill_hanja)
+    submenu = menu.addMenu("Fill incomplete notes")
+    add_action("Fill missing sounds", submenu, fill_sounds)
+    add_action("Fill translation", submenu, fill_translation)
+    add_action("Fill silhouette", submenu, fill_silhouette)
+    add_action("Fill hanja", submenu, fill_hanja)
 
-    submenu = menu.addMenu(_("Help"))
+    submenu = menu.addMenu("Help")
     add_action(
-        _("Report a bug or make a feature request"),
+        "Report a bug or make a feature request",
         submenu,
         lambda: openLink(CSR_GITHUB_URL + "/issues"),
     )
     ui_actions["debug"] = add_action(
-        _("Debug mode"), submenu, toggle_option_constructor("debug"), True
+        "Debug mode", submenu, toggle_option_constructor("debug"), True
     )
 
-    add_action(_("About..."), menu, showAbout)
+    add_action("About...", menu, showAbout)
 
     update_dict_action_checkboxes()
 
