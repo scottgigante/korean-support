@@ -26,8 +26,10 @@ from . import edit
 from .models import advanced
 from .models import basic
 from .ui import loadMenu
+from .migration import run_migrations
 
 gui_hooks.main_window_did_init.append(loadMenu)
+gui_hooks.collection_did_load.append(run_migrations)
 
 # hack to force updates
 mgr = mw.addonManager

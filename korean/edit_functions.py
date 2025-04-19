@@ -49,7 +49,7 @@ def silhouette(hangul):
             r += i + " "
         return r[:-1]
 
-    hangul_unicode = "[\u1100-\u11ff|\uAC00-\uD7AF|\u3130-\u318F]"
+    hangul_unicode = "[\u1100-\u11ff|\uac00-\ud7af|\u3130-\u318f]"
     hangul = re.sub("{}+".format(hangul_unicode), insert_spaces, hangul)
     txt = re.sub(hangul_unicode, "_", hangul)
     return txt

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-    __init__
+__init__
 
-    A translator using the micrsoft translation engine documented here:
+A translator using the micrsoft translation engine documented here:
 
-    http://msdn.microsoft.com/en-us/library/ff512419.aspx
+http://msdn.microsoft.com/en-us/library/ff512419.aspx
 
 """
 

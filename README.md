@@ -23,6 +23,13 @@ For bug reports, issues and feature requests, and to discuss contributing to the
 * [Issue Tracker](https://github.com/scottgigante/korean-support/issues)
 * [Forum support thread](https://anki.tenderapp.com/discussions/add-ons/22781-korean-support-add-on)
 * [Forum development thread](https://anki.tenderapp.com/discussions/add-ons/22783-korean-support-add-on-development)
+  
+
+### Migration
+
+With newer Anki Versions the way comments are handled changed. The plugin tries to update these templates automatically, but might detect false positives. In this case manual migration is recommended. 
+
+Click **Browse**, select a card with the correct template, select **Cards**, go to the **Back Template** and replace `<!-- {{Sound}}-->` with `<div class=korean-support-sound>{{Sound}}</div>`, then click on **Styling** and add `.korean-support-sound { display: none; }` to the bottom as a new line.
 
 ### To-do
 
@@ -32,6 +39,9 @@ For bug reports, issues and feature requests, and to discuss contributing to the
 * Google Translate
 
 ### History
+
+### v0.20-beta
+* Migrate sound templates to work with newer Anki
 
 ### v0.19-beta (2024.05.25)
 * Remove deprecated anki calls and fix version in about section
