@@ -5,8 +5,7 @@
 # Copyright © 2018 Scott Gigante <scottgigante@gmail.com>
 # License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 
-from anki.hooks import addHook
-from aqt import mw
+from aqt import mw, gui_hooks
 
 from .config import korean_support_config as config
 from .edit_behavior import updateFields
@@ -14,9 +13,9 @@ from .edit_behavior import updateFields
 
 class EditManager:
     def __init__(self):
-        addHook("setupEditorButtons", self.setupButton)
-        addHook("loadNote", self.updateButton)
-        addHook("editFocusLost", self.onFocusLost)
+        gui_hooks.editor_did_init_buttons.append(self.setupButton)
+        gui_hooks.editor_did_load_note.append(self.updateButton)
+        gui_hooks.editor_did_unfocus_field.append(self.onFocusLost)
 
     def setupButton(self, buttons, editor):
         self.editor = editor
@@ -79,6 +78,6 @@ def appendToneStyling(editor):
     editor.web.eval(js)
 
 
-addHook("loadNote", appendToneStyling)
+gui_hooks.editor_did_load_note.append(appendToneStyling)
 
 EditManager()

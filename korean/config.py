@@ -5,15 +5,13 @@
 # Copyright © 2018 Scott Gigante <scottgigante@gmail.com>
 # License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 
-from anki.hooks import addHook
-from aqt import mw
-
+from aqt import mw, gui_hooks
 
 class ConfigManager:
     def __init__(self):
         self.tips = []
         self.options = mw.addonManager.getConfig(__name__)
-        addHook("unloadProfile", self.save)
+        gui_hooks.profile_will_close.append(self.save)
 
     def save(self):
         try:
