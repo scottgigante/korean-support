@@ -7,6 +7,7 @@
 
 from aqt import mw, gui_hooks
 
+
 class ConfigManager:
     def __init__(self):
         self.tips = []
