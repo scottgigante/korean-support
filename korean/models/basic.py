@@ -39,15 +39,15 @@ def add_model_simp(col):
     model = col.models.new(model_name)
     # Add fields
     for field_name in fields_list:
-        field = col.models.newField(field_name)
+        field = col.models.new_field(field_name)
         col.models.addField(model, field)
     # recognition card
-    t = col.models.newTemplate("Recognition")
+    t = col.models.new_template("Recognition")
     t["qfmt"] = recognition_front
     t["afmt"] = recognition_back
     col.models.addTemplate(model, t)
     # recall card
-    t = col.models.newTemplate("Recall")
+    t = col.models.new_template("Recall")
     t["qfmt"] = recall_front
     t["afmt"] = recall_back
     col.models.addTemplate(model, t)
