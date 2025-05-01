@@ -31,7 +31,7 @@ class EditManager:
             toggleable=True,
         )
 
-        return buttons + [button]
+        buttons.append(button)
 
     def onToggle(self, editor):
         self.buttonOn = not self.buttonOn
