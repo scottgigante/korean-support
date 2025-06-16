@@ -14,13 +14,14 @@ from .edit_behavior import updateFields
 
 class EditManager:
     def __init__(self):
+        self.noteToEditor: dict[int, aqt.editor.Editor] = {}
         gui_hooks.editor_did_init_buttons.append(self.setupButton)
         gui_hooks.editor_did_load_note.append(self.updateButton)
         gui_hooks.editor_did_unfocus_field.append(self.onFocusLost)
         gui_hooks.editor_state_did_change.append(self.onStateChange)
+        gui_hooks.editor_did_load_note.append(self.onLoadNote)
 
     def setupButton(self, buttons, editor):
-        self.editor = editor
         self.buttonOn = False
 
         button = editor.addButton(
@@ -34,6 +35,9 @@ class EditManager:
         )
 
         buttons.append(button)
+
+    def onLoadNote(self, editor):
+        self.noteToEditor[id(editor.note)] = editor
 
     def onToggle(self, editor):
         self.buttonOn = not self.buttonOn
@@ -79,6 +83,8 @@ class EditManager:
             )
 
     def onFocusLost(self, _, note, index):
+        editor = self.noteToEditor.get(id(note))
+
         if not self.buttonOn:
             return False
 
@@ -87,9 +93,9 @@ class EditManager:
 
         if updateFields(note, field, allFields):
             if index == len(allFields) - 1:
-                self.editor.loadNote(focusTo=index)
+                editor.loadNote(focusTo=index)
             else:
-                self.editor.loadNote(focusTo=index + 1)
+                editor.loadNote(focusTo=index + 1)
 
         return False
 
