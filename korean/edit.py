@@ -6,6 +6,7 @@
 # License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 
 from aqt import mw, gui_hooks
+import aqt
 
 from .config import korean_support_config as config
 from .edit_behavior import updateFields
@@ -16,15 +17,16 @@ class EditManager:
         gui_hooks.editor_did_init_buttons.append(self.setupButton)
         gui_hooks.editor_did_load_note.append(self.updateButton)
         gui_hooks.editor_did_unfocus_field.append(self.onFocusLost)
+        gui_hooks.editor_state_did_change.append(self.onStateChange)
 
     def setupButton(self, buttons, editor):
         self.editor = editor
         self.buttonOn = False
-        editor._links["koreanSupport"] = self.onToggle
 
-        button = editor._addButton(
+        button = editor.addButton(
             icon=None,
             cmd="koreanSupport",
+            func=self.onToggle,
             tip="Korean Support",
             label="<b>한글</b>",
             id="koreanSupport",
@@ -44,13 +46,37 @@ class EditManager:
             config.options["enabledModels"].remove(mid)
 
         config.save()
+        self.updateButton(editor)
+
+    def onStateChange(self, editor, new_state, old_state):
+        if old_state is aqt.editor.EditorState.INITIAL:
+            self.updateButton(editor)
+            self.buttonOn = (
+                str(editor.note.note_type()["id"]) in config.options["enabledModels"]
+            )
 
     def updateButton(self, editor):
         enabled = str(editor.note.note_type()["id"]) in config.options["enabledModels"]
 
-        if (enabled and not self.buttonOn) or (not enabled and self.buttonOn):
-            editor.web.eval("toggleEditorButton(koreanSupport);")
-            self.buttonOn = not self.buttonOn
+        # Styles taken from https://github.com/Gustaf-C/anki-chinese-support-3/blob/main/chinese/edit.py#L92-L112
+        if enabled:
+            editor.web.eval(
+                """
+                document.getElementById("koreanSupport").classList.add("active");
+                document.getElementById("koreanSupport").style.setProperty("--button-bg", "var(--button-primary-bg)");
+                document.getElementById("koreanSupport").style.setProperty("--button-gradient-start", "var(--button-primary-gradient-start)");
+                document.getElementById("koreanSupport").style.setProperty("--button-gradient-end", "var(--button-primary-gradient-end)");
+                """
+            )
+        else:
+            editor.web.eval(
+                """
+                document.getElementById("koreanSupport").classList.remove("active");
+                document.getElementById("koreanSupport").style.setProperty("--button-bg", "");
+                document.getElementById("koreanSupport").style.setProperty("--button-gradient-start", "");
+                document.getElementById("koreanSupport").style.setProperty("--button-gradient-end", "");
+                """
+            )
 
     def onFocusLost(self, _, note, index):
         if not self.buttonOn:
