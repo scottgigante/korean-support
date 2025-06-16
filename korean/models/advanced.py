@@ -50,13 +50,13 @@ def add_model(col):
     m = mm.new(model_name)
     # Add fields
     for f in fields_list:
-        fm = mm.newField(f)
+        fm = mm.new_field(f)
         mm.addField(m, fm)
-    t = mm.newTemplate("Recognition")
+    t = mm.new_template("Recognition")
     t["qfmt"] = recognition_front
     t["afmt"] = recognition_back
     mm.addTemplate(m, t)
-    t = mm.newTemplate("Recall")
+    t = mm.new_template("Recall")
     t["qfmt"] = recall_front
     t["afmt"] = recall_back
     mm.addTemplate(m, t)

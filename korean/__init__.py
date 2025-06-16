@@ -26,21 +26,28 @@ from . import edit
 from .models import advanced
 from .models import basic
 from .ui import loadMenu
+from .migration import run_migrations
 
 gui_hooks.main_window_did_init.append(loadMenu)
+gui_hooks.collection_did_load.append(run_migrations)
+
 
 # hack to force updates
-mgr = mw.addonManager
-for dir in mgr.allAddons():
-    if mgr.addonName(dir) == "Korean Support":
-        addon_id = dir
-        break
-try:
-    updated = str(addon_id) in mgr.checkForUpdates()
-except:
-    updated = False
+def check_for_updates():
+    mgr = mw.addonManager
+    for dir in mgr.allAddons():
+        if mgr.addonName(dir) == "Korean Support":
+            addon_id = dir
+            break
+    try:
+        updated = str(addon_id) in mgr.checkForUpdates()
+    except:
+        updated = False
 
-if updated:
-    showInfo(
-        "An update is available for Korean Support. Please update it by going to Tools -> Addons -> Check for Updates."
-    )
+    if updated:
+        showInfo(
+            "An update is available for Korean Support. Please update it by going to Tools -> Addons -> Check for Updates."
+        )
+
+
+gui_hooks.main_window_did_init.append(check_for_updates)

@@ -34,7 +34,7 @@ silhouette = "<div class=korean>{{Silhouette}}</span>"
 
 comment = "<div class=comment>{{Comment}}</span>"
 
-sound = "<!-- {{Sound}}-->"
+sound = "<div class=korean-support-sound>{{Sound}}</div>"
 
 front_side = """\
 {{FrontSide}}
