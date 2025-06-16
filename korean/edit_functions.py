@@ -10,6 +10,17 @@ import os
 from aqt.utils import showInfo
 import sys
 import traceback
+import types
+
+
+# Monkey patch for other systems that might crash trying to import non existing library
+class FakePkgResources(types.ModuleType):
+    def __getattr__(self, name):
+        raise ModuleNotFoundError("pkg_resources is not available")
+
+
+sys.modules["pkg_resources"] = FakePkgResources("pkg_resources")
+
 
 from .lib import kengdic
 from . import tts
