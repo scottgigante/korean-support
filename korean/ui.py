@@ -9,6 +9,7 @@ from aqt.qt import QAction
 from aqt.utils import showInfo, openLink, askUser
 
 from .about import CSR_GITHUB_URL, showAbout
+from .krdict_api_key import showKrdictApiKey
 from .config import korean_support_config
 from .fill_missing import fill_silhouette, fill_sounds, fill_translation, fill_hanja
 
@@ -190,6 +191,8 @@ def loadMenu():
     ui_actions["debug"] = add_action(
         "Debug mode", submenu, toggle_option_constructor("debug"), True
     )
+
+    add_action("Set KRDict Api Key", menu, showKrdictApiKey)
 
     add_action("About...", menu, showAbout)
 

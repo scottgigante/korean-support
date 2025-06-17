@@ -40,3 +40,5 @@ front_side = """\
 {{FrontSide}}
 <hr id=answer>
 """
+
+explanation = "<div class=explanation>{{Explanation}}</span>"

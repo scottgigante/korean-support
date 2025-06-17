@@ -16,6 +16,7 @@ from .edit_functions import (
     sound,
     hanja,
     english,
+    explanation,
 )
 
 
@@ -30,6 +31,15 @@ def update_Meaning_fields(hangul, dico):
         setAll(config.options["fields"]["meaning"], dico, to=m)
 
     return 1
+
+
+def update_explanation_fields(hangul, dico):
+    m = ""
+    if get_any(config.options["fields"]["explanation"], dico) == "":
+        m = explanation(hangul)
+        if not m:  # Translation is empty
+            return 0
+        setAll(config.options["fields"]["explanation"], dico, to=m)
 
 
 def update_Silhouette_fields(hangul, dico):
@@ -80,6 +90,7 @@ def updateFields(note, currentField, fieldNames):
             update_Sound_fields(fieldsCopy[currentField], fieldsCopy)
             update_Silhouette_fields(fieldsCopy[currentField], fieldsCopy)
             update_Hanja_fields(fieldsCopy[currentField], fieldsCopy)
+            update_explanation_fields(fieldsCopy[currentField], fieldsCopy)
         else:
             eraseFields(fieldsCopy)
 

@@ -7,3 +7,6 @@
 [submodule "lib/gTTS"]
 	path = lib/gTTS
 	url = git@github.com:scottgigante/gTTS
+[submodule "lib/krdict"]
+	path = lib/krdict
+	url = git@github.com:kiina/krdict.py

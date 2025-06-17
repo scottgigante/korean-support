@@ -23,6 +23,7 @@ sys.modules["pkg_resources"] = FakePkgResources("pkg_resources")
 
 
 from .lib import kengdic
+from .lib.krdict.src import krdict
 from . import tts
 from .config import korean_support_config
 
@@ -69,6 +70,21 @@ def silhouette(hangul):
 def no_hidden(text):
     """Remove hidden keyword string"""
     return re.sub(r"<!--.*?-->", "", text)
+
+
+def explanation(text):
+    krdict.set_key(korean_support_config.options["krdictApiKey"])
+    response = krdict.search(query=text, raise_api_errors=True)
+    data = response.data
+    if data.total_results > 0:
+        definitions = data.results[0].definitions
+        formatted = "<br>".join(
+            f"{i+1}. {d.definition}" for i, d in enumerate(definitions)
+        )
+        print(formatted)
+        return formatted
+    else:
+        return ""
 
 
 def translate_local(text):
