@@ -40,7 +40,10 @@ Click **Browse**, select a card with the correct template, select **Cards**, go 
 
 ### History
 
-### v0.20-beta
+### v0.21-beta
+* Add krdict option to get explanations
+
+### v0.20-beta (2025.06.17)
 * Migrate sound templates to work with newer Anki
 
 ### v0.19-beta (2024.05.25)
