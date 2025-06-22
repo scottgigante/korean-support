@@ -41,4 +41,4 @@ front_side = """\
 <hr id=answer>
 """
 
-explanation = "<div class=explanation>{{Explanation}}</span>"
+explanation = "<div class='explanation hanja'>{{Explanation}}</span>"

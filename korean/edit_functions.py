@@ -81,11 +81,19 @@ def explanation(text):
     response = krdict.search(query=text, raise_api_errors=True)
     data = response.data
     if data.total_results > 0:
-        definitions = data.results[0].definitions
-        formatted = "<br>".join(
-            f"{i+1}. {d.definition}" for i, d in enumerate(definitions)
-        )
-        return formatted
+        matching_results = [r for r in data.results if r.word == text]
+
+        formatted_sections = []
+        for result in matching_results:
+            origin = result.origin or "(no origin)"
+            definitions = result.definitions
+            definitions_text = "<br>".join(
+                f"{i+1}. {d.definition}" for i, d in enumerate(definitions)
+            )
+            section = f"{origin}<br>{definitions_text}"
+            formatted_sections.append(section)
+
+        return "<br><br>".join(formatted_sections)
     else:
         return ""
 
