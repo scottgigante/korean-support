@@ -73,7 +73,7 @@ def no_hidden(text):
 
 
 def explanation(text):
-    if(korean_support_config.options["krdictApiKey"]==""):
+    if korean_support_config.options["krdictApiKey"] == "":
         if korean_support_config.options["debug"]:
             print("No krdictApiKey found")
         return ""
