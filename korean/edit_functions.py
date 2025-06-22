@@ -73,6 +73,10 @@ def no_hidden(text):
 
 
 def explanation(text):
+    if(korean_support_config.options["krdictApiKey"]==""):
+        if korean_support_config.options["debug"]:
+            print("No krdictApiKey found")
+        return ""
     krdict.set_key(korean_support_config.options["krdictApiKey"])
     response = krdict.search(query=text, raise_api_errors=True)
     data = response.data
@@ -81,7 +85,6 @@ def explanation(text):
         formatted = "<br>".join(
             f"{i+1}. {d.definition}" for i, d in enumerate(definitions)
         )
-        print(formatted)
         return formatted
     else:
         return ""

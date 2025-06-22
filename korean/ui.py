@@ -14,7 +14,7 @@ from .config import korean_support_config
 from .fill_missing import fill_silhouette, fill_sounds, fill_translation, fill_hanja
 
 
-ui_actions = {}
+ui_actions: dict[str, QAction] = {}
 
 dictionaries = [
     ("None", "None"),

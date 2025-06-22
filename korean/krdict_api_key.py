@@ -16,7 +16,12 @@ def save_api_key(api_key):
 def showKrdictApiKey():
     dialog = QDialog(mw)
     layout = QVBoxLayout()
-    label = QLabel("Enter your Krdict API key:")
+    
+    label = QLabel("""<div>You can set a krdict Api Key to automatically fill the "Meaning" field with korean explanations of the word. <br>
+                   You can apply for a API key for krdict on the korean government site <a href='https://krdict.korean.go.kr/openApi/openApiRegister'>here</a>)<br>
+                   Enter your Krdict API key:
+                   </div>""")
+    label.setOpenExternalLinks(True)
     layout.addWidget(label)
 
     input_field = QLineEdit()
