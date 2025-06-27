@@ -9,11 +9,12 @@ from aqt.qt import QAction
 from aqt.utils import showInfo, openLink, askUser
 
 from .about import CSR_GITHUB_URL, showAbout
+from .krdict_api_key import showKrdictApiKey
 from .config import korean_support_config
 from .fill_missing import fill_silhouette, fill_sounds, fill_translation, fill_hanja
 
 
-ui_actions = {}
+ui_actions: dict[str, QAction] = {}
 
 dictionaries = [
     ("None", "None"),
@@ -180,6 +181,8 @@ def loadMenu():
     add_action("Fill translation", submenu, fill_translation)
     add_action("Fill silhouette", submenu, fill_silhouette)
     add_action("Fill hanja", submenu, fill_hanja)
+
+    add_action("Set KRDict Api Key", menu, showKrdictApiKey)
 
     submenu = menu.addMenu("Help")
     add_action(

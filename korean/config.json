@@ -8,6 +8,7 @@
     "naver_tts_gender": "f",
     "startup_tip_number": 0,
     "transcription": "unknown",
+    "krdictApiKey": "",
     "fields": {
         "hangul": [
             "Korean",
@@ -48,6 +49,9 @@
         ],
         "silhouette": [
             "Silhouette"
+        ],
+        "explanation": [
+            "Explanation"
         ]
     }
 }

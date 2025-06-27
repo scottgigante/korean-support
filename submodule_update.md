@@ -11,6 +11,8 @@ cd ../NaverTTS
 git checkout master
 cd ../kengdic
 git checkout master
+cd ../krdict
+git checkout main
 cd ../..
 ```
 

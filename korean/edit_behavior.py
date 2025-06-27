@@ -9,6 +9,7 @@
 
 from .config import korean_support_config as config
 from .edit_functions import (
+    cleanup,
     get_any,
     has_field,
     setAll,
@@ -16,6 +17,7 @@ from .edit_functions import (
     sound,
     hanja,
     english,
+    explanation,
 )
 
 
@@ -30,6 +32,15 @@ def update_Meaning_fields(hangul, dico):
         setAll(config.options["fields"]["meaning"], dico, to=m)
 
     return 1
+
+
+def update_explanation_fields(hangul, dico):
+    m = ""
+    if get_any(config.options["fields"]["explanation"], dico) == "":
+        m = explanation(hangul)
+        if not m:  # Translation is empty
+            return 0
+        setAll(config.options["fields"]["explanation"], dico, to=m)
 
 
 def update_Silhouette_fields(hangul, dico):
@@ -76,10 +87,12 @@ def updateFields(note, currentField, fieldNames):
 
     if currentField in config.options["fields"]["hangul"]:
         if fieldsCopy[currentField]:
-            update_Meaning_fields(fieldsCopy[currentField], fieldsCopy)
-            update_Sound_fields(fieldsCopy[currentField], fieldsCopy)
-            update_Silhouette_fields(fieldsCopy[currentField], fieldsCopy)
-            update_Hanja_fields(fieldsCopy[currentField], fieldsCopy)
+            cleaned = cleanup(fieldsCopy[currentField])
+            update_Meaning_fields(cleaned, fieldsCopy)
+            update_Sound_fields(cleaned, fieldsCopy)
+            update_Silhouette_fields(cleaned, fieldsCopy)
+            update_Hanja_fields(cleaned, fieldsCopy)
+            update_explanation_fields(cleaned, fieldsCopy)
         else:
             eraseFields(fieldsCopy)
 
