@@ -182,6 +182,8 @@ def loadMenu():
     add_action("Fill silhouette", submenu, fill_silhouette)
     add_action("Fill hanja", submenu, fill_hanja)
 
+    add_action("Set KRDict Api Key", menu, showKrdictApiKey)
+
     submenu = menu.addMenu("Help")
     add_action(
         "Report a bug or make a feature request",
@@ -191,8 +193,6 @@ def loadMenu():
     ui_actions["debug"] = add_action(
         "Debug mode", submenu, toggle_option_constructor("debug"), True
     )
-
-    add_action("Set KRDict Api Key", menu, showKrdictApiKey)
 
     add_action("About...", menu, showAbout)
 
