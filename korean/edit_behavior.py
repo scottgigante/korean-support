@@ -9,6 +9,7 @@
 
 from .config import korean_support_config as config
 from .edit_functions import (
+    cleanup,
     get_any,
     has_field,
     setAll,
@@ -86,11 +87,12 @@ def updateFields(note, currentField, fieldNames):
 
     if currentField in config.options["fields"]["hangul"]:
         if fieldsCopy[currentField]:
-            update_Meaning_fields(fieldsCopy[currentField], fieldsCopy)
-            update_Sound_fields(fieldsCopy[currentField], fieldsCopy)
-            update_Silhouette_fields(fieldsCopy[currentField], fieldsCopy)
-            update_Hanja_fields(fieldsCopy[currentField], fieldsCopy)
-            update_explanation_fields(fieldsCopy[currentField], fieldsCopy)
+            cleaned = cleanup(fieldsCopy[currentField])
+            update_Meaning_fields(cleaned, fieldsCopy)
+            update_Sound_fields(cleaned, fieldsCopy)
+            update_Silhouette_fields(cleaned, fieldsCopy)
+            update_Hanja_fields(cleaned, fieldsCopy)
+            update_explanation_fields(cleaned, fieldsCopy)
         else:
             eraseFields(fieldsCopy)
 
